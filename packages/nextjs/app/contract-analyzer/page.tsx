@@ -203,8 +203,8 @@ const ContractAnalyzerPage = () => {
     if (!showResultsModal || !formattedResult) return null;
 
     const getExplorerLink = (address: string, txHash: string) => {
-      // Use ETN testnet explorer for better integration
-      const baseExplorerUrl = "https://testnet-blockexplorer.electroneum.com";
+      // Use Somnia testnet explorer for better integration
+      const baseExplorerUrl = "https://shannon-explorer.somnia.network";
       return {
         contract: `${baseExplorerUrl}/address/${address}`,
         transaction: `${baseExplorerUrl}/tx/${txHash}`,
@@ -433,7 +433,7 @@ const ContractAnalyzerPage = () => {
               Please connect your wallet to any EVM-compatible network to analyze contracts.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+              Supported testnet: Somnia (Chain ID: 50312)
             </p>
           </div>
         ) : (

@@ -65,16 +65,7 @@ const BlockExplorer: NextPage = () => {
     }
     
     const chainId = networkInfo.chainId;
-    if (chainId === "5201420") {
-      return {
-        name: "ETN Testnet",
-        chainId: "5201420",
-        explorer: "https://testnet-blockexplorer.electroneum.com",
-        color: "text-blue-400",
-        bgColor: "bg-blue-900/20",
-        borderColor: "border-blue-500/30"
-      };
-    } else if (chainId === "50312") {
+    if (chainId === "50312") {
       return {
         name: "Somnia Testnet", 
         chainId: "50312",
@@ -155,7 +146,7 @@ const BlockExplorer: NextPage = () => {
               Please connect your wallet to any EVM-compatible network to use the block explorer.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+              Supported testnet: Somnia (Chain ID: 50312)
             </p>
           </div>
         ) : (

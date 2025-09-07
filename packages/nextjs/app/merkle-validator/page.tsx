@@ -137,7 +137,7 @@ const MerkleValidatorPage = () => {
               Please connect your wallet to any EVM-compatible network to use the Merkle Proof Validator.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+              Supported testnet: Somnia (Chain ID: 50312)
             </p>
           </div>
         ) : (

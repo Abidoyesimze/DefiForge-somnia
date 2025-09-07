@@ -31,7 +31,7 @@ const ContractVerificationGuide = () => {
             Contract Verification Guide
           </h1>
           <p className="text-xl text-gray-300">
-            Learn how to verify your smart contracts on ETN and Somnia testnets
+            Learn how to verify your smart contracts on Somnia testnet
           </p>
         </div>
 
@@ -90,41 +90,7 @@ const ContractVerificationGuide = () => {
         </div>
 
         {/* Network Information */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          {/* ETN Testnet */}
-          <div className="bg-[#1c2941] rounded-xl p-6 border border-[#2a3b54] shadow-xl">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              <h3 className="text-xl font-bold text-blue-400">ETN Testnet</h3>
-            </div>
-            <div className="space-y-3 text-sm">
-              <div className="flex justify-between">
-                <span className="text-gray-400">Chain ID:</span>
-                <span className="text-white font-mono">5201420</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">Explorer:</span>
-                <a 
-                  href="https://testnet-blockexplorer.electroneum.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline"
-                >
-                  ETN Explorer
-                </a>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-400">RPC URL:</span>
-                <button
-                  onClick={() => copyToClipboard('https://testnet-rpc.electroneum.com', 'RPC URL')}
-                  className="text-blue-400 hover:underline"
-                >
-                  Copy
-                </button>
-              </div>
-            </div>
-          </div>
-
+        <div className="max-w-2xl mx-auto mb-8">
           {/* Somnia Testnet */}
           <div className="bg-[#1c2941] rounded-xl p-6 border border-[#2a3b54] shadow-xl">
             <div className="flex items-center gap-3 mb-4">
@@ -150,7 +116,7 @@ const ContractVerificationGuide = () => {
               <div className="flex justify-between">
                 <span className="text-gray-400">RPC URL:</span>
                 <button
-                  onClick={() => copyToClipboard('https://shannon-explorer.somnia.network', 'RPC URL')}
+                  onClick={() => copyToClipboard('https://dream-rpc.somnia.network/', 'RPC URL')}
                   className="text-purple-400 hover:underline"
                 >
                   Copy
@@ -197,17 +163,7 @@ const ContractVerificationGuide = () => {
                 <p className="text-gray-300 mb-3">
                   Navigate to the appropriate block explorer for your network and search for your contract address.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <a
-                    href="https://testnet-blockexplorer.electroneum.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 p-3 bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors"
-                  >
-                    <GlobeAltIcon className="h-5 w-5" />
-                    <span>ETN Explorer</span>
-                    <ExternalLinkIcon className="h-4 w-4 ml-auto" />
-                  </a>
+                <div className="max-w-xs mx-auto">
                   <a
                     href="https://shannon-explorer.somnia.network"
                     target="_blank"

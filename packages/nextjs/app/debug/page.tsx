@@ -41,10 +41,10 @@ const Debug: NextPage = () => {
             <div className="text-4xl mb-4">🔒</div>
             <h2 className="text-xl font-bold mb-4">Connect Your Wallet</h2>
             <p className="text-gray-300">
-              Please connect your wallet to any EVM-compatible network to debug contracts.
+              Please connect your wallet to Somnia testnet to debug contracts.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+              Supported testnet: Somnia (Chain ID: 50312)
             </p>
           </div>
         ) : (
