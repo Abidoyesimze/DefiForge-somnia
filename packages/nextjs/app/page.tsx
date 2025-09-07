@@ -33,7 +33,7 @@ const features = [
   {
     title: "Token Factory",
     description:
-      "Create custom ERC20, ERC721, and ERC1155 tokens with ease. Deploy tokens with custom names, symbols, and configurations.",
+      "Deploy custom ERC20, ERC721, and ERC1155 tokens on Somnia blockchain with enterprise-grade security and gas optimization.",
     icon: CurrencyDollarIcon,
     link: "/token-factory",
     color: "from-purple-500 to-pink-500",
@@ -42,52 +42,52 @@ const features = [
   },
   {
     title: "DeFi Utilities",
-    description: "Advanced DeFi calculations including liquidity, yield, impermanent loss, and swap fee calculations.",
+    description: "Professional-grade DeFi calculations for liquidity analysis, yield optimization, and risk assessment on Somnia.",
     icon: ChartBarIcon,
     link: "/defi-utils",
     color: "from-blue-500 to-cyan-500",
-    stats: "Real-time Calculations",
-    badge: "New",
+    stats: "Real-time Analytics",
+    badge: "Pro",
   },
   {
     title: "Contract Analyzer",
-    description: "Analyze smart contracts for gas optimization, security, and deployment costs.",
+    description: "Comprehensive smart contract analysis with security auditing, gas optimization, and performance metrics.",
     icon: BeakerIcon,
     link: "/contract-analyzer",
     color: "from-green-500 to-emerald-500",
-    stats: "Gas Optimization",
-    badge: "Featured",
+    stats: "Security Analysis",
+    badge: "Enterprise",
   },
   {
     title: "Contract Templates",
-    description: "Ready-to-use smart contract templates for vesting, multi-sig wallets, and more.",
+    description: "Production-ready, audited smart contract templates designed specifically for Somnia blockchain ecosystem.",
     icon: DocumentTextIcon,
     link: "/contract-templates",
     color: "from-orange-500 to-red-500",
-    stats: "Pre-built Templates",
-    badge: "Hot",
+    stats: "Audited Templates",
+    badge: "Enterprise",
   },
   {
     title: "Merkle Proof Validator",
-    description: "Validate Merkle proofs on-chain for efficient whitelists and airdrops.",
+    description: "Enterprise-grade Merkle proof validation for secure whitelist management and access control systems.",
     icon: ShieldCheckIcon,
     link: "/merkle-validator",
     color: "from-indigo-500 to-purple-500",
-    stats: "Secure Validation",
-    badge: "Secure",
+    stats: "Proof Validation",
+    badge: "Security",
   },
   {
     title: "Merkle Proof Generator",
-    description: "Generate Merkle proofs and trees for efficient address management.",
+    description: "Advanced Merkle tree generation for efficient whitelist management and decentralized access control.",
     icon: KeyIcon,
     link: "/merkle-proof-generator",
     color: "from-teal-500 to-blue-500",
-    stats: "Proof Generation",
-    badge: "Essential",
+    stats: "Tree Generation",
+    badge: "Utility",
   },
   {
     title: "Contract Debugger",
-    description: "Debug and interact with deployed smart contracts. Read state variables and execute functions.",
+    description: "Professional contract debugging and testing suite for Somnia blockchain development and deployment.",
     icon: CodeBracketIcon,
     link: "/debug",
     color: "from-yellow-500 to-orange-500",
@@ -96,16 +96,16 @@ const features = [
   },
   {
     title: "Block Explorer",
-    description: "Explore blocks, transactions, and addresses on Somnia testnet.",
+    description: "Native Somnia blockchain explorer for comprehensive transaction and address analysis.",
     icon: GlobeAltIcon,
     link: "/blockexplorer",
     color: "from-cyan-500 to-blue-500",
     stats: "Blockchain Explorer",
-    badge: "Network",
+    badge: "Native",
   },
   {
     title: "Verification Guide",
-    description: "Learn how to verify your smart contracts on Somnia testnet.",
+    description: "Complete guide for verifying smart contracts on Somnia blockchain with Shannon Explorer integration.",
     icon: ShieldCheckIcon,
     link: "/contract-verification-guide",
     color: "from-green-500 to-emerald-500",
@@ -233,18 +233,18 @@ const Home = () => {
               </span>
             </h1>
             <p className="text-2xl md:text-3xl text-purple-400 mb-4 font-semibold">
-              The Ultimate DeFi Development Toolkit
+              Professional DeFi Development Platform for Somnia Blockchain
             </p>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Build, analyze, and deploy DeFi protocols with our comprehensive suite of smart contract tools. From token
-              creation to advanced analytics, we&apos;ve got everything you need to build the future of finance.
+              Enterprise-grade smart contract development tools designed specifically for Somnia blockchain. Deploy secure, 
+              optimized DeFi protocols with our comprehensive suite of professional development tools and audited templates.
             </p>
 
             {/* Network Badge */}
             <div className="mb-8">
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full text-sm font-medium">
-                <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-                Live on EVM-Compatible Network
+              <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full text-sm font-medium">
+                <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
+                Powered by Somnia Blockchain
               </div>
             </div>
 
@@ -345,8 +345,9 @@ const Home = () => {
               What is <span className="text-purple-400">DefiForge</span>?
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              DefiForge is a comprehensive DeFi development platform that provides developers with all the tools they
-              need to build, deploy, and manage decentralized finance applications.
+              DefiForge is the premier DeFi development platform built exclusively for Somnia blockchain. We provide 
+              enterprise-grade tools, audited smart contracts, and professional development utilities designed to accelerate 
+              your blockchain project deployment on Somnia's high-performance network.
             </p>
           </div>
 
@@ -355,23 +356,23 @@ const Home = () => {
               <div className="text-4xl mb-4">🚀</div>
               <h3 className="text-xl font-semibold mb-4 text-white">For Developers</h3>
               <ul className="text-gray-300 space-y-2">
-                <li>• Pre-built, audited smart contract templates</li>
-                <li>• Advanced DeFi calculation utilities</li>
-                <li>• Gas optimization and contract analysis tools</li>
-                <li>• Merkle proof generation and validation</li>
-                <li>• ERC20 token factory with custom parameters</li>
+                <li>• Production-ready, audited smart contract templates</li>
+                <li>• Professional DeFi analytics and calculation tools</li>
+                <li>• Advanced gas optimization and security analysis</li>
+                <li>• Enterprise-grade Merkle proof systems</li>
+                <li>• Multi-token factory with Somnia optimization</li>
               </ul>
             </div>
 
             <div className="bg-[#1c2941] p-8 rounded-lg border border-gray-600">
               <div className="text-4xl mb-4">💎</div>
-              <h3 className="text-xl font-semibold mb-4 text-white">For Projects</h3>
+              <h3 className="text-xl font-semibold mb-4 text-white">For Enterprises</h3>
               <ul className="text-gray-300 space-y-2">
-                <li>• Rapid token deployment and management</li>
-                <li>• Efficient whitelist and airdrop systems</li>
-                <li>• Professional-grade contract templates</li>
-                <li>• Cost-effective gas optimization</li>
-                <li>• Cross-chain compatibility ready</li>
+                <li>• Enterprise-grade token deployment on Somnia</li>
+                <li>• Secure whitelist and access control systems</li>
+                <li>• Audited contract templates for production use</li>
+                <li>• Optimized gas costs for Somnia blockchain</li>
+                <li>• Native Somnia blockchain integration</li>
               </ul>
             </div>
           </div>
@@ -407,8 +408,8 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">Production Ready</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  All contracts are deployed and ready for production use. Built with OpenZeppelin standards and best
-                  practices.
+                  Enterprise-grade contracts deployed on Somnia blockchain. Built with OpenZeppelin standards and 
+                  production-tested security practices.
                 </p>
               </div>
             </div>
@@ -420,8 +421,8 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">Security First</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Built with OpenZeppelin contracts and best practices for maximum security. Comprehensive testing and
-                  auditing included.
+                  Enterprise-grade security with OpenZeppelin contracts and comprehensive auditing. Designed for 
+                  production environments on Somnia blockchain.
                 </p>
               </div>
             </div>
@@ -431,10 +432,10 @@ const Home = () => {
                 <div className="inline-flex p-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full mb-6 group-hover:scale-110 transition-transform duration-300">
                   <CogIcon className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4 text-white">Developer Friendly</h3>
+                <h3 className="text-xl font-semibold mb-4 text-white">Professional Tools</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Easy-to-use interfaces and comprehensive documentation for developers. Built by developers, for
-                  developers.
+                  Enterprise-grade development tools with professional interfaces and comprehensive documentation. 
+                  Built specifically for Somnia blockchain ecosystem.
                 </p>
               </div>
             </div>
@@ -573,10 +574,10 @@ const Home = () => {
           </div>
 
           <h2 className="text-4xl font-bold mb-6 text-white">
-            Ready to Build the <span className="text-purple-400">Future of DeFi</span>?
+            Ready to Build on <span className="text-purple-400">Somnia Blockchain</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Join thousands of developers building the next generation of decentralized finance with DefiForge
+            Join the Somnia ecosystem and deploy enterprise-grade DeFi protocols with our professional development platform
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
