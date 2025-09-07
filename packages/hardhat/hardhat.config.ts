@@ -23,9 +23,6 @@ const providerApiKey = process.env.ALCHEMY_API_KEY;
 const deployerPrivateKey = process.env.__RUNTIME_DEPLOYER_PRIVATE_KEY;
 // Somnia testnet private key - use your actual private key from .env
 const somniaPrivateKey = process.env.SOMNIA_PRIVATE_KEY;
-
-// ETN testnet private key - use your actual private key from .env
-const etnPrivateKey = process.env.ETN_PRIVATE_KEY;
 // If not set, it uses our block explorers default API keys.
 const etherscanApiKey = process.env.ETHERSCAN_MAINNET_API_KEY;
 const etherscanOptimisticApiKey = process.env.ETHERSCAN_OPTIMISTIC_API_KEY;
@@ -56,88 +53,10 @@ const config: HardhatUserConfig = {
     },
   }),
   networks: {
-    // View the networks that are pre-configured.
-    // If the network you are looking for is not here you can add new network settings
+    // Somnia-focused configuration - only Somnia testnet
     hardhat: {
-      forking: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
-        enabled: process.env.MAINNET_FORKING_ENABLED === "true",
-      },
+      // Remove mainnet forking for Somnia-focused development
     },
-    ...(deployerPrivateKey && {
-      mainnet: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      sepolia: {
-        url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      arbitrum: {
-        url: `https://arb-mainnet.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      arbitrumSepolia: {
-        url: `https://arb-sepolia.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      optimism: {
-        url: `https://opt-mainnet.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      optimismSepolia: {
-        url: `https://opt-sepolia.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      polygon: {
-        url: `https://polygon-mainnet.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      polygonAmoy: {
-        url: `https://polygon-amoy.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      polygonZkEvm: {
-        url: `https://polygonzkevm-mainnet.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      polygonZkEvmCardona: {
-        url: `https://polygonzkevm-cardona.g.alchemy.com/v2/${providerApiKey}`,
-        accounts: [deployerPrivateKey],
-      },
-      gnosis: {
-        url: "https://rpc.gnosischain.com",
-        accounts: [deployerPrivateKey],
-      },
-      chiado: {
-        url: "https://rpc.chiadochain.net",
-        accounts: [deployerPrivateKey],
-      },
-      base: {
-        url: "https://mainnet.base.org",
-        accounts: [deployerPrivateKey],
-      },
-      baseSepolia: {
-        url: "https://sepolia.base.org",
-        accounts: [deployerPrivateKey],
-      },
-      scrollSepolia: {
-        url: "https://sepolia-rpc.scroll.io",
-        accounts: [deployerPrivateKey],
-      },
-      scroll: {
-        url: "https://rpc.scroll.io",
-        accounts: [deployerPrivateKey],
-      },
-      celo: {
-        url: "https://forno.celo.org",
-        accounts: [deployerPrivateKey],
-      },
-      celoAlfajores: {
-        url: "https://alfajores-forno.celo-testnet.org",
-        accounts: [deployerPrivateKey],
-      },
-    }),
     ...(somniaPrivateKey && {
       somnia: {
         url: "https://dream-rpc.somnia.network/",
@@ -145,15 +64,8 @@ const config: HardhatUserConfig = {
         chainId: 50312,
       },
     }),
-    ...(etnPrivateKey && {
-      etn: {
-        url: "https://rpc.ankr.com/electroneum_testnet",
-        accounts: [etnPrivateKey],
-        chainId: 5201420,
-      },
-    }),
   },
-  // Configuration for harhdat-verify plugin
+  // Configuration for hardhat-verify plugin - Somnia only
   etherscan: {
     apiKey: `${etherscanApiKey}`,
     customChains: [
@@ -163,14 +75,6 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: "https://shannon-explorer.somnia.network/api",
           browserURL: "https://shannon-explorer.somnia.network/",
-        },
-      },
-      {
-        network: "etn",
-        chainId: 5201420,
-        urls: {
-          apiURL: "https://testnet-blockexplorer.electroneum.com/api",
-          browserURL: "https://testnet-blockexplorer.electroneum.com/",
         },
       },
     ],

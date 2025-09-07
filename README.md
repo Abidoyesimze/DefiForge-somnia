@@ -36,7 +36,7 @@ Generate Merkle trees and proofs for your whitelist systems. Upload addresses, g
 ## 🌐 How Does DefiForge Work?
 
 ### **Step 1: Connect Your Wallet**
-Connect your cryptocurrency wallet to the ETN or Somnia testnet. This gives you access to all DefiForge tools.
+Connect your cryptocurrency wallet to the Somnia testnet. This gives you access to all DefiForge tools.
 
 ### **Step 2: Choose Your Tool**
 Select the DeFi tool you need from our intuitive interface. Each tool is designed for a specific use case.
@@ -53,7 +53,7 @@ Your smart contracts are deployed and ready to use. Start building your DeFi eco
 ## 🚀 Why Choose DefiForge?
 
 ### **Production Ready**
-- All contracts are deployed on Somnia and ETN testnet
+- All contracts are deployed on Somnia testnet
 - Built with OpenZeppelin security standards
 - Comprehensive testing and auditing included
 
@@ -72,9 +72,9 @@ Your smart contracts are deployed and ready to use. Start building your DeFi eco
 - Open-source and auditable
 - Regular security updates
 
-## 🌍 Built on Somnia and ETN Network for now 
+## 🌍 Built on Somnia Network 
 
-DefiForge runs on Somnia and Electroneum Network's testnet, providing:
+DefiForge runs on Somnia testnet, providing:
 - **Fast Transactions**: Sub-second finality
 - **Low Costs**: Fraction of Ethereum gas fees
 - **EVM Compatible**: Works with existing Ethereum tools
@@ -115,7 +115,7 @@ Build calculators, portfolio trackers, and financial planning tools.
 
 ### **For Developers**
 1. Visit DefiForge platform
-2. Connect your wallet to Somnia or Electroneum testnet
+2. Connect your wallet to Somnia testnet
 3. Choose the tool you need
 4. Follow the guided setup process
 5. Deploy your smart contracts

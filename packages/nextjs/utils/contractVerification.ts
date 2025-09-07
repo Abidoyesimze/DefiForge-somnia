@@ -1,5 +1,5 @@
 // Contract Verification Service for DefiForge
-// Handles verification of user-deployed contracts on ETN and Somnia testnets
+// Handles verification of user-deployed contracts on Somnia testnet
 
 export interface VerificationResult {
   success: boolean;
@@ -11,35 +11,26 @@ export interface VerificationResult {
 
 export interface ContractInfo {
   address: string;
-  network: 'etn' | 'somnia';
+  network: 'somnia';
   contractType: 'token' | 'template';
   constructorArgs?: any[];
   sourceCode?: string;
 }
 
-// Network configuration for verification
+// Network configuration for verification - Somnia only
 const NETWORK_CONFIG = {
-  etn: {
-    chainId: '5201420',
-    name: 'ETN Testnet',
-    explorer: 'https://testnet-blockexplorer.electroneum.com',
-    verificationApi: 'https://testnet-blockexplorer.electroneum.com/api',
-    rpcUrl: 'https://testnet-rpc.electroneum.com'
-  },
   somnia: {
     chainId: '50312', 
     name: 'Somnia Testnet',
     explorer: 'https://shannon-explorer.somnia.network',
     verificationApi: 'https://shannon-explorer.somnia.network/api',
-    rpcUrl: 'https://shannon-explorer.somnia.network'
+    rpcUrl: 'https://dream-rpc.somnia.network/'
   }
 };
 
-// Get network info from chain ID
-export const getNetworkFromChainId = (chainId: string): 'etn' | 'somnia' | null => {
+// Get network info from chain ID - Somnia only
+export const getNetworkFromChainId = (chainId: string): 'somnia' | null => {
   switch (chainId) {
-    case '5201420':
-      return 'etn';
     case '50312':
       return 'somnia';
     default:

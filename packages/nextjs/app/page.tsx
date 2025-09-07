@@ -96,7 +96,7 @@ const features = [
   },
   {
     title: "Block Explorer",
-    description: "Explore blocks, transactions, and addresses on ETN and Somnia testnets.",
+    description: "Explore blocks, transactions, and addresses on Somnia testnet.",
     icon: GlobeAltIcon,
     link: "/blockexplorer",
     color: "from-cyan-500 to-blue-500",
@@ -105,7 +105,7 @@ const features = [
   },
   {
     title: "Verification Guide",
-    description: "Learn how to verify your smart contracts on ETN and Somnia testnets.",
+    description: "Learn how to verify your smart contracts on Somnia testnet.",
     icon: ShieldCheckIcon,
     link: "/contract-verification-guide",
     color: "from-green-500 to-emerald-500",
@@ -303,8 +303,7 @@ const Home = () => {
               cost-effective environment for DeFi development and testing.
             </p>
             <p className="text-sm text-gray-400 mt-2">
-              Currently supporting: <strong>ETN Testnet</strong> (Chain ID: 5201420) and <strong>Somnia Testnet</strong>{" "}
-              (Chain ID: 50312)
+              Currently supporting: <strong>Somnia Testnet</strong> (Chain ID: 50312)
             </p>
           </div>
 
@@ -334,7 +333,7 @@ const Home = () => {
           <div className="mt-8 text-center">
             <div className="inline-flex items-center px-4 py-2 bg-[#0f1a2e] rounded-lg border border-gray-600">
               <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-sm text-gray-300">Multi-Chain Ready • EVM Compatible • ETN & Somnia Testnets</span>
+              <span className="text-sm text-gray-300">Somnia Ready • EVM Compatible • Somnia Testnet</span>
             </div>
           </div>
         </div>
@@ -543,7 +542,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
-              { step: "1", title: "Connect Wallet", desc: "Connect your wallet to ETN or Somnia testnet", icon: "🔗" },
+              { step: "1", title: "Connect Wallet", desc: "Connect your wallet to Somnia testnet", icon: "🔗" },
               { step: "2", title: "Choose Feature", desc: "Select the DeFi tool you need", icon: "🛠️" },
               { step: "3", title: "Interact", desc: "Use the tool with your parameters", icon: "⚡" },
               { step: "4", title: "Deploy", desc: "Deploy or use the generated results", icon: "🚀" },

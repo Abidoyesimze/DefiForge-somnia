@@ -11,25 +11,6 @@ export type ScaffoldConfig = {
 
 export const DEFAULT_ALCHEMY_API_KEY = process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || "";
 
-// Define ETN testnet chain
-const etnTestnet = {
-  id: 5201420,
-  name: "ETN Testnet",
-  network: "etn-testnet",
-  nativeCurrency: {
-    name: "ETN Test Token",
-    symbol: "ETN",
-    decimals: 18,
-  },
-  rpcUrls: {
-    default: { http: ["https://rpc.ankr.com/electroneum_testnet"] },
-    public: { http: ["https://rpc.ankr.com/electroneum_testnet"] },
-  },
-  blockExplorers: {
-    default: { name: "ETN Explorer", url: "https://testnet-explorer.electroneum.com/" },
-  },
-} as const;
-
 // Define Somnia testnet chain
 const somniaTestnet = {
   id: 50312,
@@ -50,8 +31,8 @@ const somniaTestnet = {
 } as const;
 
 const scaffoldConfig = {
-  // The networks on which your DApp is live
-  targetNetworks: [etnTestnet, somniaTestnet],
+  // The networks on which your DApp is live - Somnia only
+  targetNetworks: [somniaTestnet],
 
   // The interval at which your front-end polls the RPC servers for new data
   pollingInterval: 30000,
@@ -59,9 +40,8 @@ const scaffoldConfig = {
   // This is the Alchemy API key that we provide to you for free. You can get your own at https://www.alchemy.com/
   alchemyApiKey: process.env.NEXT_PUBLIC_ALCHEMY_API_KEY || DEFAULT_ALCHEMY_API_KEY,
 
-  // Override RPC URLs for specific networks
+  // Override RPC URLs for specific networks - Somnia only
   rpcOverrides: {
-    [etnTestnet.id]: "https://rpc.ankr.com/electroneum_testnet",
     [somniaTestnet.id]: "https://dream-rpc.somnia.network/",
   },
 

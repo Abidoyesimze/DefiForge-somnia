@@ -318,18 +318,10 @@ const TokenFactoryPage = () => {
       }
       
       const chainId = networkInfo.chainId;
-      if (chainId === "5201420") {
+      // Only Somnia testnet supported
+      if (chainId === "50312") {
         return {
-          name: "ETN Testnet",
-          chainId: "5201420",
-          explorer: "https://testnet-blockexplorer.electroneum.com",
-          color: "text-blue-400",
-          bgColor: "bg-blue-900/20",
-          borderColor: "border-blue-500/30"
-        };
-      } else if (chainId === "50312") {
-        return {
-          name: "Somnia Testnet", 
+          name: "Somnia Testnet",
           chainId: "50312",
           explorer: "https://shannon-explorer.somnia.network",
           color: "text-purple-400",
@@ -499,7 +491,7 @@ const TokenFactoryPage = () => {
                 <div className="mt-3 text-sm text-green-300">
                   <p>Connected to an EVM-compatible network. You can now deploy tokens!</p>
                   <p className="mt-1 text-xs text-gray-400">
-                    Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+                    Supported testnet: Somnia (Chain ID: 50312)
                   </p>
                 </div>
                 

@@ -140,9 +140,9 @@ const ContractTemplatesPage = () => {
       return;
     }
 
-    const supportedNetworks = ["5201420", "50312"]; // ETN and Somnia
+    const supportedNetworks = ["50312"]; // Somnia only
     if (!supportedNetworks.includes(networkInfo.chainId)) {
-      toast.error(`Unsupported network. Please switch to ETN (5201420) or Somnia (50312) testnet. Current: ${networkInfo.chainId}`);
+      toast.error(`Unsupported network. Please switch to Somnia (50312) testnet. Current: ${networkInfo.chainId}`);
       return;
     }
 
@@ -240,7 +240,7 @@ const ContractTemplatesPage = () => {
       }
 
       // Get the correct contract address for the current network
-      const networkType = networkInfo.chainId === "5201420" ? "etn" : "somnia";
+      const networkType = "somnia";
       const contractAddress = getContractAddress("ContractTemplates", networkType);
       
       console.log("🚀 Deploying contract template...");
@@ -757,7 +757,7 @@ const ContractTemplatesPage = () => {
               Please connect your wallet to any EVM-compatible network to deploy contract templates.
             </p>
             <p className="text-xs text-gray-400 mt-2">
-              Supported testnets: ETN (Chain ID: 5201420) and Somnia (Chain ID: 50312)
+              Supported testnet: Somnia (Chain ID: 50312)
             </p>
           </div>
         ) : (
@@ -840,7 +840,7 @@ const ContractTemplatesPage = () => {
                   <h3 className="text-lg font-semibold mb-2 text-white">Network</h3>
                   <div className="text-emerald-400 font-semibold">EVM-Compatible Network</div>
                   <div className="text-gray-400 text-sm">Chain ID: {networkInfo?.chainId || "..."}</div>
-                  <div className="text-xs text-gray-500 mt-1">Supported: ETN (5201420), Somnia (50312)</div>
+                  <div className="text-xs text-gray-500 mt-1">Supported: Somnia (50312)</div>
                 </div>
               </div>
             </div>
