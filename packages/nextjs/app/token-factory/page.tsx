@@ -494,18 +494,6 @@ const TokenFactoryPage = () => {
                     Supported testnet: Somnia (Chain ID: 50312)
                   </p>
                 </div>
-                
-                {/* Debug Information */}
-                <div className="mt-4 p-3 bg-blue-900/20 rounded-lg border border-blue-500/30">
-                  <h4 className="text-sm font-semibold text-blue-300 mb-2">Debug Info</h4>
-                  <div className="text-xs text-blue-200 space-y-1">
-                    <div>Current Network: {networkInfo?.name || "Unknown"}</div>
-                    <div>Chain ID: {networkInfo?.chainId || "Unknown"}</div>
-                    <div>ERC20 Factory: {getContractAddress("ERC20Factory")}</div>
-                    <div>ERC721 Factory: {getContractAddress("ERC721Factory")}</div>
-                    <div>ERC1155 Factory: {getContractAddress("ERC1155Factory")}</div>
-                  </div>
-                </div>
               </div>
             </div>
 
