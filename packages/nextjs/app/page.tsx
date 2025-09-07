@@ -292,48 +292,48 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Network Information Section */}
+        {/* Somnia Blockchain Section */}
         <div className="py-12 bg-[#1c2941] rounded-lg border border-gray-600">
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold mb-4 text-white">
-              🌐 Built on <span className="text-purple-400">EVM-Compatible Networks</span>
+              🌐 Built Exclusively for <span className="text-purple-400">Somnia Blockchain</span>
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              DefiForge is designed to work on any EVM-compatible blockchain, providing a fast, secure, and
-              cost-effective environment for DeFi development and testing.
+              DefiForge is the premier DeFi development platform built specifically for Somnia blockchain, 
+              providing enterprise-grade tools and optimized performance for the Somnia ecosystem.
             </p>
             <p className="text-sm text-gray-400 mt-2">
-              Currently supporting: <strong>Somnia Testnet</strong> (Chain ID: 50312)
+              Native Somnia Integration: <strong>Somnia Testnet</strong> (Chain ID: 50312)
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             <div className="text-center p-4">
               <div className="text-2xl mb-2">⚡</div>
-              <h3 className="font-semibold text-white mb-1">Fast Transactions</h3>
-              <p className="text-sm text-gray-400">Sub-second finality</p>
+              <h3 className="font-semibold text-white mb-1">Lightning Fast</h3>
+              <p className="text-sm text-gray-400">Sub-second finality on Somnia</p>
             </div>
             <div className="text-center p-4">
               <div className="text-2xl mb-2">💰</div>
-              <h3 className="font-semibold text-white mb-1">Low Gas Fees</h3>
-              <p className="text-sm text-gray-400">Fraction of Ethereum costs</p>
+              <h3 className="font-semibold text-white mb-1">Ultra Low Costs</h3>
+              <p className="text-sm text-gray-400">Optimized for Somnia gas efficiency</p>
             </div>
             <div className="text-center p-4">
               <div className="text-2xl mb-2">🔒</div>
-              <h3 className="font-semibold text-white mb-1">Secure</h3>
-              <p className="text-sm text-gray-400">EVM compatible</p>
+              <h3 className="font-semibold text-white mb-1">Enterprise Security</h3>
+              <p className="text-sm text-gray-400">Production-ready on Somnia</p>
             </div>
             <div className="text-center p-4">
-              <div className="text-2xl mb-2">🌍</div>
-              <h3 className="font-semibold text-white mb-1">Multi-Chain Ready</h3>
-              <p className="text-sm text-gray-400">Deploy on any EVM network</p>
+              <div className="text-2xl mb-2">🚀</div>
+              <h3 className="font-semibold text-white mb-1">Somnia Native</h3>
+              <p className="text-sm text-gray-400">Built for Somnia ecosystem</p>
             </div>
           </div>
 
           <div className="mt-8 text-center">
-            <div className="inline-flex items-center px-4 py-2 bg-[#0f1a2e] rounded-lg border border-gray-600">
-              <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-sm text-gray-300">Somnia Ready • EVM Compatible • Somnia Testnet</span>
+            <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg border border-purple-500">
+              <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-sm text-white font-medium">Somnia Native • Enterprise Ready • Production Tested</span>
             </div>
           </div>
         </div>
