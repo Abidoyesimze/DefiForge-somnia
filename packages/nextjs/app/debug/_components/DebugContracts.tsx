@@ -64,14 +64,8 @@ export function DebugContracts() {
             </div>
           )}
           {contractNames.map(contractName => (
-            <div
-              key={contractName}
-              className={contractName === selectedContract ? "block" : "hidden"}
-            >
-              <ContractUI
-                contractName={contractName}
-                className=""
-              />
+            <div key={contractName} className={contractName === selectedContract ? "block" : "hidden"}>
+              <ContractUI contractName={contractName} className="" />
             </div>
           ))}
         </>

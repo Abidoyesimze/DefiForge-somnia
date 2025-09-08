@@ -11,8 +11,8 @@ export interface VerificationResult {
 
 export interface ContractInfo {
   address: string;
-  network: 'somnia';
-  contractType: 'token' | 'template';
+  network: "somnia";
+  contractType: "token" | "template";
   constructorArgs?: any[];
   sourceCode?: string;
 }
@@ -20,19 +20,19 @@ export interface ContractInfo {
 // Network configuration for verification - Somnia only
 const NETWORK_CONFIG = {
   somnia: {
-    chainId: '50312', 
-    name: 'Somnia Testnet',
-    explorer: 'https://shannon-explorer.somnia.network',
-    verificationApi: 'https://shannon-explorer.somnia.network/api',
-    rpcUrl: 'https://dream-rpc.somnia.network/'
-  }
+    chainId: "50312",
+    name: "Somnia Testnet",
+    explorer: "https://shannon-explorer.somnia.network",
+    verificationApi: "https://shannon-explorer.somnia.network/api",
+    rpcUrl: "https://dream-rpc.somnia.network/",
+  },
 };
 
 // Get network info from chain ID - Somnia only
-export const getNetworkFromChainId = (chainId: string): 'somnia' | null => {
+export const getNetworkFromChainId = (chainId: string): "somnia" | null => {
   switch (chainId) {
-    case '50312':
-      return 'somnia';
+    case "50312":
+      return "somnia";
     default:
       return null;
   }
@@ -42,34 +42,34 @@ export const getNetworkFromChainId = (chainId: string): 'somnia' | null => {
 export const checkVerificationStatus = async (contractInfo: ContractInfo): Promise<VerificationResult> => {
   try {
     const network = NETWORK_CONFIG[contractInfo.network];
-    
+
     // Check verification status via API
     const response = await fetch(`${network.verificationApi}/contracts/${contractInfo.address}`);
-    
+
     if (response.ok) {
       const data = await response.json();
-      
+
       if (data.verified) {
         return {
           success: true,
-          message: 'Contract is already verified',
+          message: "Contract is already verified",
           explorerUrl: `${network.explorer}/address/${contractInfo.address}`,
-          verificationUrl: `${network.explorer}/address/${contractInfo.address}#code`
+          verificationUrl: `${network.explorer}/address/${contractInfo.address}#code`,
         };
       }
     }
-    
+
     return {
       success: false,
-      message: 'Contract is not verified',
+      message: "Contract is not verified",
       explorerUrl: `${network.explorer}/address/${contractInfo.address}`,
-      verificationUrl: `${network.explorer}/address/${contractInfo.address}#verifyContract`
+      verificationUrl: `${network.explorer}/address/${contractInfo.address}#verifyContract`,
     };
   } catch (error) {
     return {
       success: false,
-      message: 'Unable to check verification status',
-      error: error instanceof Error ? error.message : 'Unknown error'
+      message: "Unable to check verification status",
+      error: error instanceof Error ? error.message : "Unknown error",
     };
   }
 };
@@ -77,12 +77,12 @@ export const checkVerificationStatus = async (contractInfo: ContractInfo): Promi
 // Generate verification guide for different contract types
 export const generateVerificationGuide = (contractInfo: ContractInfo): string => {
   const network = NETWORK_CONFIG[contractInfo.network];
-  
+
   let guide = `# Contract Verification Guide\n\n`;
   guide += `**Contract Address:** \`${contractInfo.address}\`\n`;
   guide += `**Network:** ${network.name} (Chain ID: ${network.chainId})\n`;
   guide += `**Contract Type:** ${contractInfo.contractType}\n\n`;
-  
+
   guide += `## Method 1: Automatic Verification (Recommended)\n\n`;
   guide += `1. **Visit the Explorer:** [${network.explorer}/address/${contractInfo.address}](${network.explorer}/address/${contractInfo.address})\n`;
   guide += `2. **Click "Verify & Publish"** in the contract tab\n`;
@@ -93,38 +93,38 @@ export const generateVerificationGuide = (contractInfo: ContractInfo): string =>
   guide += `   - Optimization: \`Enabled\` (200 runs)\n`;
   guide += `   - EVM Version: \`default\`\n`;
   guide += `6. **Click "Verify & Publish"**\n\n`;
-  
-  if (contractInfo.contractType === 'token') {
+
+  if (contractInfo.contractType === "token") {
     guide += `## Token Contract Source Code\n\n`;
     guide += `\`\`\`solidity\n`;
     guide += getTokenContractSourceCode(contractInfo);
     guide += `\n\`\`\`\n\n`;
-  } else if (contractInfo.contractType === 'template') {
+  } else if (contractInfo.contractType === "template") {
     guide += `## Template Contract Source Code\n\n`;
     guide += `\`\`\`solidity\n`;
     guide += getTemplateContractSourceCode(contractInfo);
     guide += `\n\`\`\`\n\n`;
   }
-  
+
   guide += `## Method 2: Manual Verification\n\n`;
   guide += `If automatic verification fails:\n\n`;
   guide += `1. **Flatten the contract** using a tool like [Hardhat Flattener](https://github.com/nomiclabs/hardhat/tree/master/packages/hardhat-etherscan)\n`;
   guide += `2. **Copy the flattened source code**\n`;
   guide += `3. **Use "Via flattened source code"** option in the explorer\n`;
   guide += `4. **Paste the flattened code** and verify\n\n`;
-  
+
   guide += `## Verification Benefits\n\n`;
   guide += `✅ **Transparency:** Source code is publicly visible\n`;
   guide += `✅ **Trust:** Users can verify contract functionality\n`;
   guide += `✅ **Integration:** Easier integration with other tools\n`;
   guide += `✅ **Security:** Community can audit the code\n\n`;
-  
+
   guide += `## Troubleshooting\n\n`;
   guide += `- **"Already Verified":** Contract is already verified\n`;
   guide += `- **"Compilation Error":** Check compiler version and settings\n`;
   guide += `- **"Constructor Arguments":** Ensure constructor args match deployment\n`;
   guide += `- **"Bytecode Mismatch":** Verify source code matches deployed bytecode\n\n`;
-  
+
   return guide;
 };
 
@@ -194,17 +194,17 @@ contract DefiForgeTemplate is Ownable, ReentrancyGuard {
 // Generate verification checklist
 export const getVerificationChecklist = (contractInfo: ContractInfo): string[] => {
   return [
-    'Contract deployed successfully',
-    'Transaction confirmed on blockchain',
-    'Contract address copied',
-    'Source code prepared',
-    'Compiler version identified',
-    'Constructor arguments noted',
-    'Explorer verification page opened',
-    'Source code uploaded',
-    'Compiler settings configured',
-    'Verification submitted',
-    'Verification status checked'
+    "Contract deployed successfully",
+    "Transaction confirmed on blockchain",
+    "Contract address copied",
+    "Source code prepared",
+    "Compiler version identified",
+    "Constructor arguments noted",
+    "Explorer verification page opened",
+    "Source code uploaded",
+    "Compiler settings configured",
+    "Verification submitted",
+    "Verification status checked",
   ];
 };
 
@@ -213,12 +213,12 @@ export const getDetailedVerificationInfo = async (contractInfo: ContractInfo) =>
   const status = await checkVerificationStatus(contractInfo);
   const guide = generateVerificationGuide(contractInfo);
   const checklist = getVerificationChecklist(contractInfo);
-  
+
   return {
     status,
     guide,
     checklist,
     network: NETWORK_CONFIG[contractInfo.network],
-    contractInfo
+    contractInfo,
   };
 };

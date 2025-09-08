@@ -1,25 +1,25 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
-import { 
-  getDetailedVerificationInfo, 
-  getNetworkFromChainId,
+import React, { useEffect, useState } from "react";
+import {
   type ContractInfo,
-  type VerificationResult 
-} from '../utils/contractVerification';
-import { 
+  type VerificationResult,
+  getDetailedVerificationInfo,
+  getNetworkFromChainId,
+} from "../utils/contractVerification";
+import { toast } from "react-toastify";
+import {
   CheckCircleIcon,
-  ExclamationTriangleIcon,
-  DocumentTextIcon,
   ClipboardDocumentIcon,
-  InformationCircleIcon
-} from '@heroicons/react/24/outline';
-import { toast } from 'react-toastify';
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  InformationCircleIcon,
+} from "@heroicons/react/24/outline";
 
 interface ContractVerificationProps {
   contractAddress: string;
   networkChainId: string;
-  contractType: 'token' | 'template';
+  contractType: "token" | "template";
   contractName?: string;
   className?: string;
 }
@@ -29,7 +29,7 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
   networkChainId,
   contractType,
   contractName,
-  className = ""
+  className = "",
 }) => {
   const [verificationInfo, setVerificationInfo] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,20 +46,20 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
 
   const checkVerificationStatus = async () => {
     if (!network) return;
-    
+
     setIsLoading(true);
     try {
       const contractInfo: ContractInfo = {
         address: contractAddress,
         network,
-        contractType
+        contractType,
       };
-      
+
       const info = await getDetailedVerificationInfo(contractInfo);
       setVerificationInfo(info);
     } catch (error) {
-      console.error('Error checking verification status:', error);
-      toast.error('Failed to check verification status');
+      console.error("Error checking verification status:", error);
+      toast.error("Failed to check verification status");
     } finally {
       setIsLoading(false);
     }
@@ -70,7 +70,7 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
       await navigator.clipboard.writeText(text);
       toast.success(`${label} copied to clipboard!`);
     } catch (err) {
-      toast.error('Failed to copy to clipboard');
+      toast.error("Failed to copy to clipboard");
     }
   };
 
@@ -112,11 +112,11 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
   return (
     <div className={`space-y-4 ${className}`}>
       {/* Verification Status */}
-      <div className={`p-4 rounded-lg border ${
-        status.success 
-          ? 'bg-green-900/20 border-green-500/30' 
-          : 'bg-amber-900/20 border-amber-500/30'
-      }`}>
+      <div
+        className={`p-4 rounded-lg border ${
+          status.success ? "bg-green-900/20 border-green-500/30" : "bg-amber-900/20 border-amber-500/30"
+        }`}
+      >
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             {status.success ? (
@@ -126,16 +126,14 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
             )}
             <div>
               <h3 className="font-semibold text-white">
-                {status.success ? 'Contract Verified' : 'Contract Not Verified'}
+                {status.success ? "Contract Verified" : "Contract Not Verified"}
               </h3>
-              <p className="text-sm text-gray-300">
-                {status.message}
-              </p>
+              <p className="text-sm text-gray-300">{status.message}</p>
             </div>
           </div>
           <div className="flex gap-2">
             <button
-              onClick={() => copyToClipboard(contractAddress, 'Contract address')}
+              onClick={() => copyToClipboard(contractAddress, "Contract address")}
               className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
               title="Copy contract address"
             >
@@ -150,7 +148,12 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
                 title="View on explorer"
               >
                 <svg className="h-4 w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
                 </svg>
               </a>
             )}
@@ -194,14 +197,14 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
               className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-colors"
             >
               <DocumentTextIcon className="h-5 w-5" />
-              {showGuide ? 'Hide' : 'Show'} Verification Guide
+              {showGuide ? "Hide" : "Show"} Verification Guide
             </button>
             <button
               onClick={() => setShowChecklist(!showChecklist)}
               className="flex-1 flex items-center justify-center gap-2 py-3 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
             >
               <CheckCircleIcon className="h-5 w-5" />
-              {showChecklist ? 'Hide' : 'Show'} Checklist
+              {showChecklist ? "Hide" : "Show"} Checklist
             </button>
           </div>
 
@@ -213,7 +216,12 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
               className="w-full flex items-center justify-center gap-2 py-3 px-4 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
             >
               <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
               </svg>
               Open Verification Page
             </a>
@@ -227,7 +235,7 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
           <div className="flex items-center justify-between mb-3">
             <h4 className="font-semibold text-white">Verification Guide</h4>
             <button
-              onClick={() => copyToClipboard(verificationInfo.guide, 'Verification guide')}
+              onClick={() => copyToClipboard(verificationInfo.guide, "Verification guide")}
               className="p-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
               title="Copy guide"
             >
@@ -235,9 +243,7 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
             </button>
           </div>
           <div className="prose prose-invert max-w-none">
-            <pre className="text-sm text-gray-300 whitespace-pre-wrap overflow-x-auto">
-              {verificationInfo.guide}
-            </pre>
+            <pre className="text-sm text-gray-300 whitespace-pre-wrap overflow-x-auto">{verificationInfo.guide}</pre>
           </div>
         </div>
       )}
@@ -264,12 +270,20 @@ const ContractVerification: React.FC<ContractVerificationProps> = ({
         <h4 className="font-semibold text-amber-400 mb-3">Why Verify Your Contract?</h4>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm text-gray-300">
           <div className="space-y-2">
-            <div>✅ <strong>Transparency:</strong> Source code is publicly visible</div>
-            <div>✅ <strong>Trust:</strong> Users can verify functionality</div>
+            <div>
+              ✅ <strong>Transparency:</strong> Source code is publicly visible
+            </div>
+            <div>
+              ✅ <strong>Trust:</strong> Users can verify functionality
+            </div>
           </div>
           <div className="space-y-2">
-            <div>✅ <strong>Integration:</strong> Easier tool integration</div>
-            <div>✅ <strong>Security:</strong> Community can audit code</div>
+            <div>
+              ✅ <strong>Integration:</strong> Easier tool integration
+            </div>
+            <div>
+              ✅ <strong>Security:</strong> Community can audit code
+            </div>
           </div>
         </div>
       </div>

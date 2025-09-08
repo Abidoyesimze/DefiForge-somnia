@@ -62,7 +62,7 @@ export const Header = () => {
         <Link
           href="/"
           className="flex items-center"
-          onClick={e => {
+          onClick={(e: any) => {
             e.stopPropagation();
             router.push("/");
           }}

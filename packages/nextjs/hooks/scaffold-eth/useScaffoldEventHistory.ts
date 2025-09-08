@@ -66,13 +66,7 @@ const getEvents = async (
  * @param config.watch - if set to true, the events will be updated every pollingInterval milliseconds set at scaffoldConfig (default: false)
  * @param config.enabled - set this to false to disable the hook from running (default: true)
  */
-export const useScaffoldEventHistory = <
-  TContractName extends ContractName,
-  TEventName extends ExtractAbiEventNames<ContractAbi<TContractName>>,
-  TBlockData extends boolean = false,
-  TTransactionData extends boolean = false,
-  TReceiptData extends boolean = false,
->({
+export const useScaffoldEventHistory = ({
   contractName,
   eventName,
   fromBlock,
@@ -83,7 +77,7 @@ export const useScaffoldEventHistory = <
   receiptData,
   watch,
   enabled = true,
-}: UseScaffoldEventHistoryConfig<TContractName, TEventName, TBlockData, TTransactionData, TReceiptData>) => {
+}: any) => {
   const selectedNetwork = useSelectedNetwork(chainId);
 
   const publicClient = usePublicClient({
@@ -142,13 +136,7 @@ export const useScaffoldEventHistory = <
       return nextBlock;
     },
     select: data => {
-      const events = data.pages.flat() as unknown as UseScaffoldEventHistoryData<
-        TContractName,
-        TEventName,
-        TBlockData,
-        TTransactionData,
-        TReceiptData
-      >;
+      const events = data.pages.flat() as unknown as any;
 
       return {
         pages: events?.reverse(),

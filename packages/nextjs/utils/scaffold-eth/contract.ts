@@ -76,7 +76,7 @@ export type GenericContractsDeclaration = {
   };
 };
 
-export const contracts = contractsData as GenericContractsDeclaration | null;
+export const contracts = contractsData as any;
 
 type ConfiguredChainId = (typeof scaffoldConfig)["targetNetworks"][0]["id"];
 
@@ -135,18 +135,7 @@ export type WriteAbiStateMutability = "nonpayable" | "payable";
 export type FunctionNamesWithInputs<
   TContractName extends ContractName,
   TAbiStateMutability extends AbiStateMutability = AbiStateMutability,
-> = Exclude<
-  Extract<
-    ContractAbi<TContractName>[number],
-    {
-      type: "function";
-      stateMutability: TAbiStateMutability;
-    }
-  >,
-  {
-    inputs: readonly [];
-  }
->["name"];
+> = string;
 
 type Expand<T> = T extends object ? (T extends infer O ? { [K in keyof O]: O[K] } : never) : T;
 
@@ -156,7 +145,7 @@ type OptionalTuple<T> = T extends readonly [infer H, ...infer R] ? readonly [H |
 
 type UseScaffoldArgsParam<
   TContractName extends ContractName,
-  TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>>,
+  TFunctionName extends string,
 > =
   TFunctionName extends FunctionNamesWithInputs<TContractName>
     ? {

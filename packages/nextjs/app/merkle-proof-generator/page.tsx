@@ -562,6 +562,7 @@ const MerkleGenerator = () => {
         draggable
         pauseOnHover
         theme="dark"
+        aria-label="Toast notifications"
       />
 
       <div className="max-w-4xl mx-auto p-6">
@@ -605,9 +606,7 @@ const MerkleGenerator = () => {
             Generate Merkle proofs for your whitelist, airdrop, or any other permissioned system. Upload addresses, get
             your Merkle root and proofs.
           </p>
-          <p className="text-xs text-gray-400 mb-4">
-            Supported testnet: Somnia (Chain ID: 50312)
-          </p>
+          <p className="text-xs text-gray-400 mb-4">Supported testnet: Somnia (Chain ID: 50312)</p>
 
           <div className="bg-purple-900/20 p-4 rounded-lg border border-purple-800">
             <h3 className="text-sm font-semibold text-purple-300 mb-2 flex items-center gap-2">
@@ -622,7 +621,6 @@ const MerkleGenerator = () => {
         </div>
 
         <div className="space-y-6">
-
           {/* File Upload Section */}
           <div className="rounded-lg p-6 bg-[#1c2941]">
             <h3 className="text-lg font-semibold mb-4 text-white">Upload Addresses</h3>

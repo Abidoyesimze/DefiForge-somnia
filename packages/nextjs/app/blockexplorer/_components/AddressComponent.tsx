@@ -15,7 +15,7 @@ export const AddressComponent = ({
         <div className="flex justify-start mb-5">
           <BackButton />
         </div>
-        
+
         {/* Address Header */}
         <div className="bg-[#1c2941] rounded-xl p-6 mb-6 border border-[#2a3b54] shadow-xl">
           <div className="flex items-center justify-between">

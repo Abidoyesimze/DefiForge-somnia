@@ -3,13 +3,13 @@
 import { useEffect, useState } from "react";
 import { PaginationButton, SearchBar, TransactionsTable } from "./_components";
 import type { NextPage } from "next";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { hardhat } from "viem/chains";
+import { useAccount } from "wagmi";
 import { useFetchBlocks } from "~~/hooks/scaffold-eth";
 import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { notification } from "~~/utils/scaffold-eth";
-import { useAccount } from "wagmi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const BlockExplorer: NextPage = () => {
   const { blocks, transactionReceipts, currentPage, totalBlocks, setCurrentPage, error } = useFetchBlocks();
@@ -60,19 +60,19 @@ const BlockExplorer: NextPage = () => {
         explorer: "https://etherscan.io",
         color: "text-gray-400",
         bgColor: "bg-gray-900/20",
-        borderColor: "border-gray-500/30"
+        borderColor: "border-gray-500/30",
       };
     }
-    
+
     const chainId = networkInfo.chainId;
     if (chainId === "50312") {
       return {
-        name: "Somnia Testnet", 
+        name: "Somnia Testnet",
         chainId: "50312",
         explorer: "https://shannon-explorer.somnia.network",
         color: "text-purple-400",
         bgColor: "bg-purple-900/20",
-        borderColor: "border-purple-500/30"
+        borderColor: "border-purple-500/30",
       };
     } else {
       return {
@@ -81,7 +81,7 @@ const BlockExplorer: NextPage = () => {
         explorer: "https://etherscan.io",
         color: "text-gray-400",
         bgColor: "bg-gray-900/20",
-        borderColor: "border-gray-500/30"
+        borderColor: "border-gray-500/30",
       };
     }
   };
@@ -101,17 +101,16 @@ const BlockExplorer: NextPage = () => {
         draggable
         pauseOnHover
         theme="dark"
+        aria-label="Toast notifications"
       />
-      
+
       <div className="max-w-7xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-slate-400 bg-clip-text text-transparent">
             Block Explorer
           </h1>
-          <p className="text-xl text-gray-300">
-            Explore blocks, transactions, and addresses on the blockchain
-          </p>
+          <p className="text-xl text-gray-300">Explore blocks, transactions, and addresses on the blockchain</p>
         </div>
 
         {/* Network Status */}
@@ -120,7 +119,7 @@ const BlockExplorer: NextPage = () => {
             <div className={`${network.bgColor} rounded-xl p-4 border ${network.borderColor}`}>
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className={`w-3 h-3 rounded-full ${network.color.replace('text-', 'bg-')}`}></div>
+                  <div className={`w-3 h-3 rounded-full ${network.color.replace("text-", "bg-")}`}></div>
                   <span className="text-sm font-medium">
                     Network: {network.name} (Chain ID: {network.chainId})
                   </span>
@@ -130,7 +129,15 @@ const BlockExplorer: NextPage = () => {
               <div className="mt-3 text-sm text-gray-300">
                 <p>Block explorer for {network.name}</p>
                 <p className="mt-1 text-xs text-gray-400">
-                  External explorer: <a href={network.explorer} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">{network.explorer}</a>
+                  External explorer:{" "}
+                  <a
+                    href={network.explorer}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:underline"
+                  >
+                    {network.explorer}
+                  </a>
                 </p>
               </div>
             </div>
@@ -145,9 +152,7 @@ const BlockExplorer: NextPage = () => {
             <p className="text-gray-300">
               Please connect your wallet to any EVM-compatible network to use the block explorer.
             </p>
-            <p className="text-xs text-gray-400 mt-2">
-              Supported testnet: Somnia (Chain ID: 50312)
-            </p>
+            <p className="text-xs text-gray-400 mt-2">Supported testnet: Somnia (Chain ID: 50312)</p>
           </div>
         ) : (
           <>
@@ -155,14 +160,16 @@ const BlockExplorer: NextPage = () => {
             <div className="bg-[#1c2941] rounded-xl border border-[#2a3b54] shadow-xl">
               <div className="p-6 border-b border-[#2a3b54]">
                 <h2 className="text-2xl font-bold text-emerald-400">Block Explorer Interface</h2>
-                <p className="text-gray-300 mt-2">
-                  Search for addresses, transactions, and explore blockchain data
-                </p>
+                <p className="text-gray-300 mt-2">Search for addresses, transactions, and explore blockchain data</p>
               </div>
               <div className="p-6">
                 <SearchBar />
                 <TransactionsTable blocks={blocks} transactionReceipts={transactionReceipts} />
-                <PaginationButton currentPage={currentPage} totalItems={Number(totalBlocks)} setCurrentPage={setCurrentPage} />
+                <PaginationButton
+                  currentPage={currentPage}
+                  totalItems={Number(totalBlocks)}
+                  setCurrentPage={setCurrentPage}
+                />
               </div>
             </div>
 
@@ -171,14 +178,26 @@ const BlockExplorer: NextPage = () => {
               <h3 className="text-lg font-semibold mb-4 text-amber-400">Block Explorer Features</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
                 <div className="space-y-2">
-                  <div>• <strong>Block Search:</strong> View block details and transactions</div>
-                  <div>• <strong>Transaction History:</strong> Track transaction status and details</div>
-                  <div>• <strong>Address Lookup:</strong> Explore address balances and activity</div>
+                  <div>
+                    • <strong>Block Search:</strong> View block details and transactions
+                  </div>
+                  <div>
+                    • <strong>Transaction History:</strong> Track transaction status and details
+                  </div>
+                  <div>
+                    • <strong>Address Lookup:</strong> Explore address balances and activity
+                  </div>
                 </div>
                 <div className="space-y-2">
-                  <div>• <strong>Gas Tracking:</strong> Monitor gas prices and usage</div>
-                  <div>• <strong>Contract Interaction:</strong> View contract calls and events</div>
-                  <div>• <strong>Network Stats:</strong> Real-time blockchain statistics</div>
+                  <div>
+                    • <strong>Gas Tracking:</strong> Monitor gas prices and usage
+                  </div>
+                  <div>
+                    • <strong>Contract Interaction:</strong> View contract calls and events
+                  </div>
+                  <div>
+                    • <strong>Network Stats:</strong> Real-time blockchain statistics
+                  </div>
                 </div>
               </div>
             </div>

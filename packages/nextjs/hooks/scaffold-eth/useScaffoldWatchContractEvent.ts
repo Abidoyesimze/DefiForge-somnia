@@ -15,15 +15,12 @@ import { ContractAbi, ContractName, UseScaffoldEventConfig } from "~~/utils/scaf
  * @param config.chainId - optional chainId that is configured with the scaffold project to make use for multi-chain interactions.
  * @param config.onLogs - the callback that receives events.
  */
-export const useScaffoldWatchContractEvent = <
-  TContractName extends ContractName,
-  TEventName extends ExtractAbiEventNames<ContractAbi<TContractName>>,
->({
+export const useScaffoldWatchContractEvent = ({
   contractName,
   eventName,
   chainId,
   onLogs,
-}: UseScaffoldEventConfig<TContractName, TEventName>) => {
+}: any) => {
   const selectedNetwork = useSelectedNetwork(chainId);
   const { data: deployedContractData } = useDeployedContractInfo({
     contractName,

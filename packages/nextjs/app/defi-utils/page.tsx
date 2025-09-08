@@ -611,9 +611,7 @@ const DeFiUtilsPage = () => {
             <p className="text-gray-300 mb-6">
               Please connect your wallet to any EVM-compatible network to use DeFi utilities.
             </p>
-            <p className="text-xs text-gray-400">
-              Supported testnet: Somnia (Chain ID: 50312)
-            </p>
+            <p className="text-xs text-gray-400">Supported testnet: Somnia (Chain ID: 50312)</p>
           </div>
         ) : (
           <>

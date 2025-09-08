@@ -86,7 +86,11 @@ const ContractAnalyzerPage = () => {
       // Use ethers.js directly (same fix as Token Factory)
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const contract = new ethers.Contract(getContractAddress("ContractAnalyzer"), ContractAnalyzerContract.abi, signer);
+      const contract = new ethers.Contract(
+        getContractAddress("ContractAnalyzer"),
+        ContractAnalyzerContract.abi,
+        signer,
+      );
 
       // Estimate gas properly
       const gasEstimate = await contract.analyzeContract.estimateGas(contractAddress);
@@ -432,9 +436,7 @@ const ContractAnalyzerPage = () => {
             <p className="text-gray-300">
               Please connect your wallet to any EVM-compatible network to analyze contracts.
             </p>
-            <p className="text-xs text-gray-400 mt-2">
-              Supported testnet: Somnia (Chain ID: 50312)
-            </p>
+            <p className="text-xs text-gray-400 mt-2">Supported testnet: Somnia (Chain ID: 50312)</p>
           </div>
         ) : (
           <>

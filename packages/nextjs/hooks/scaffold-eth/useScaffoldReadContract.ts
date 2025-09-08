@@ -22,16 +22,13 @@ import {
  * @param config.args - args to be passed to the function call
  * @param config.chainId - optional chainId that is configured with the scaffold project to make use for multi-chain interactions.
  */
-export const useScaffoldReadContract = <
-  TContractName extends ContractName,
-  TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "pure" | "view">,
->({
+export const useScaffoldReadContract = ({
   contractName,
   functionName,
   args,
   chainId,
   ...readConfig
-}: UseScaffoldReadConfig<TContractName, TFunctionName>) => {
+}: any) => {
   const selectedNetwork = useSelectedNetwork(chainId);
   const { data: deployedContract } = useDeployedContractInfo({
     contractName,
@@ -54,10 +51,10 @@ export const useScaffoldReadContract = <
       ...queryOptions,
     },
   }) as Omit<ReturnType<typeof useReadContract>, "data" | "refetch"> & {
-    data: AbiFunctionReturnType<ContractAbi, TFunctionName> | undefined;
+    data: any;
     refetch: (
       options?: RefetchOptions | undefined,
-    ) => Promise<QueryObserverResult<AbiFunctionReturnType<ContractAbi, TFunctionName>, ReadContractErrorType>>;
+    ) => Promise<QueryObserverResult<any, ReadContractErrorType>>;
   };
 
   const queryClient = useQueryClient();

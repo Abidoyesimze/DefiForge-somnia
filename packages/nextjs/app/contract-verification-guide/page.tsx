@@ -1,16 +1,16 @@
 "use client";
 
-import React from 'react';
-import { 
-  CheckCircleIcon, 
-  ExclamationTriangleIcon, 
-  DocumentTextIcon,
-  CodeBracketIcon,
-  ShieldCheckIcon,
-  GlobeAltIcon,
+import React from "react";
+import {
+  ArrowTopRightOnSquareIcon,
+  CheckCircleIcon,
   ClipboardDocumentIcon,
-  ExternalLinkIcon
-} from '@heroicons/react/24/outline';
+  CodeBracketIcon,
+  DocumentTextIcon,
+  ExclamationTriangleIcon,
+  GlobeAltIcon,
+  ShieldCheckIcon,
+} from "@heroicons/react/24/outline";
 
 const ContractVerificationGuide = () => {
   const copyToClipboard = async (text: string, label: string) => {
@@ -18,7 +18,7 @@ const ContractVerificationGuide = () => {
       await navigator.clipboard.writeText(text);
       // You could add a toast notification here
     } catch (err) {
-      console.error('Failed to copy to clipboard');
+      console.error("Failed to copy to clipboard");
     }
   };
 
@@ -30,9 +30,7 @@ const ContractVerificationGuide = () => {
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-slate-400 bg-clip-text text-transparent">
             Contract Verification Guide
           </h1>
-          <p className="text-xl text-gray-300">
-            Learn how to verify your smart contracts on Somnia testnet
-          </p>
+          <p className="text-xl text-gray-300">Learn how to verify your smart contracts on Somnia testnet</p>
         </div>
 
         {/* Overview */}
@@ -41,30 +39,38 @@ const ContractVerificationGuide = () => {
             <ShieldCheckIcon className="h-8 w-8 text-emerald-400" />
             <h2 className="text-2xl font-bold text-emerald-400">What is Contract Verification?</h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">Why Verify?</h3>
               <ul className="space-y-2 text-gray-300">
                 <li className="flex items-start gap-2">
                   <CheckCircleIcon className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span><strong>Transparency:</strong> Source code is publicly visible</span>
+                  <span>
+                    <strong>Transparency:</strong> Source code is publicly visible
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircleIcon className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span><strong>Trust:</strong> Users can verify contract functionality</span>
+                  <span>
+                    <strong>Trust:</strong> Users can verify contract functionality
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircleIcon className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span><strong>Security:</strong> Community can audit the code</span>
+                  <span>
+                    <strong>Security:</strong> Community can audit the code
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckCircleIcon className="h-5 w-5 text-green-400 mt-0.5 flex-shrink-0" />
-                  <span><strong>Integration:</strong> Easier integration with other tools</span>
+                  <span>
+                    <strong>Integration:</strong> Easier integration with other tools
+                  </span>
                 </li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">What Gets Verified?</h3>
               <ul className="space-y-2 text-gray-300">
@@ -104,9 +110,9 @@ const ContractVerificationGuide = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Explorer:</span>
-                <a 
-                  href="https://shannon-explorer.somnia.network" 
-                  target="_blank" 
+                <a
+                  href="https://shannon-explorer.somnia.network"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="text-purple-400 hover:underline"
                 >
@@ -116,7 +122,7 @@ const ContractVerificationGuide = () => {
               <div className="flex justify-between">
                 <span className="text-gray-400">RPC URL:</span>
                 <button
-                  onClick={() => copyToClipboard('https://dream-rpc.somnia.network/', 'RPC URL')}
+                  onClick={() => copyToClipboard("https://dream-rpc.somnia.network/", "RPC URL")}
                   className="text-purple-400 hover:underline"
                 >
                   Copy
@@ -142,8 +148,8 @@ const ContractVerificationGuide = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-2">Deploy Your Contract</h3>
                 <p className="text-gray-300 mb-3">
-                  First, deploy your contract using DefiForge's Token Factory or Contract Templates. 
-                  Make sure to save the contract address and deployment transaction hash.
+                  First, deploy your contract using DefiForge&apos;s Token Factory or Contract Templates. Make sure to
+                  save the contract address and deployment transaction hash.
                 </p>
                 <div className="bg-[#0f1a2e] p-3 rounded-lg border border-[#1e2a3a]">
                   <code className="text-emerald-400 text-sm">
@@ -172,7 +178,7 @@ const ContractVerificationGuide = () => {
                   >
                     <GlobeAltIcon className="h-5 w-5" />
                     <span>Somnia Explorer</span>
-                    <ExternalLinkIcon className="h-4 w-4 ml-auto" />
+                    <ArrowTopRightOnSquareIcon className="h-4 w-4 ml-auto" />
                   </a>
                 </div>
               </div>
@@ -184,15 +190,15 @@ const ContractVerificationGuide = () => {
                 3
               </div>
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-white mb-2">Click "Verify & Publish"</h3>
+                <h3 className="text-lg font-semibold text-white mb-2">Click &quot;Verify & Publish&quot;</h3>
                 <p className="text-gray-300 mb-3">
-                  On the contract page, look for the "Verify & Publish" button in the contract tab. 
-                  Click it to start the verification process.
+                  On the contract page, look for the &quot;Verify & Publish&quot; button in the contract tab. Click it
+                  to start the verification process.
                 </p>
                 <div className="bg-amber-900/20 p-3 rounded-lg border border-amber-500/30">
                   <div className="flex items-center gap-2 text-amber-400">
                     <ExclamationTriangleIcon className="h-5 w-5" />
-                    <span className="text-sm">Make sure you're on the correct network!</span>
+                    <span className="text-sm">Make sure you&apos;re on the correct network!</span>
                   </div>
                 </div>
               </div>
@@ -206,12 +212,13 @@ const ContractVerificationGuide = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-2">Select Verification Method</h3>
                 <p className="text-gray-300 mb-3">
-                  Choose "Via Standard JSON Input" for the easiest verification process. 
-                  This method allows you to upload the complete contract source code.
+                  Choose &quot;Via Standard JSON Input&quot; for the easiest verification process. This method allows
+                  you to upload the complete contract source code.
                 </p>
                 <div className="bg-[#0f1a2e] p-3 rounded-lg border border-[#1e2a3a]">
                   <div className="text-sm text-gray-300">
-                    <strong>Recommended:</strong> Via Standard JSON Input<br/>
+                    <strong>Recommended:</strong> Via Standard JSON Input
+                    <br />
                     <strong>Alternative:</strong> Via flattened source code
                   </div>
                 </div>
@@ -226,12 +233,13 @@ const ContractVerificationGuide = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-2">Upload Source Code</h3>
                 <p className="text-gray-300 mb-3">
-                  Upload the contract source code. For DefiForge contracts, you can find the source code 
-                  in the verification guide provided after deployment.
+                  Upload the contract source code. For DefiForge contracts, you can find the source code in the
+                  verification guide provided after deployment.
                 </p>
                 <div className="bg-[#0f1a2e] p-3 rounded-lg border border-[#1e2a3a]">
                   <div className="text-sm text-gray-300">
-                    <strong>File format:</strong> .sol (Solidity source file)<br/>
+                    <strong>File format:</strong> .sol (Solidity source file)
+                    <br />
                     <strong>Size limit:</strong> Usually 1MB or less
                   </div>
                 </div>
@@ -245,14 +253,18 @@ const ContractVerificationGuide = () => {
               </div>
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-2">Configure Compiler Settings</h3>
-                <p className="text-gray-300 mb-3">
-                  Enter the correct compiler settings that match your deployment:
-                </p>
+                <p className="text-gray-300 mb-3">Enter the correct compiler settings that match your deployment:</p>
                 <div className="bg-[#0f1a2e] p-3 rounded-lg border border-[#1e2a3a]">
                   <div className="text-sm text-gray-300 space-y-1">
-                    <div><strong>Compiler Version:</strong> v0.8.19+commit.7dd6d404</div>
-                    <div><strong>Optimization:</strong> Enabled (200 runs)</div>
-                    <div><strong>EVM Version:</strong> default</div>
+                    <div>
+                      <strong>Compiler Version:</strong> v0.8.19+commit.7dd6d404
+                    </div>
+                    <div>
+                      <strong>Optimization:</strong> Enabled (200 runs)
+                    </div>
+                    <div>
+                      <strong>EVM Version:</strong> default
+                    </div>
                   </div>
                 </div>
               </div>
@@ -266,8 +278,8 @@ const ContractVerificationGuide = () => {
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-white mb-2">Submit for Verification</h3>
                 <p className="text-gray-300 mb-3">
-                  Review all settings and click "Verify & Publish". The verification process usually takes 
-                  a few minutes to complete.
+                  Review all settings and click &quot;Verify & Publish&quot;. The verification process usually takes a
+                  few minutes to complete.
                 </p>
                 <div className="bg-green-900/20 p-3 rounded-lg border border-green-500/30">
                   <div className="flex items-center gap-2 text-green-400">
@@ -290,14 +302,14 @@ const ContractVerificationGuide = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
-                <h4 className="font-semibold text-red-400 mb-2">"Already Verified"</h4>
+                <h4 className="font-semibold text-red-400 mb-2">&quot;Already Verified&quot;</h4>
                 <p className="text-sm text-gray-300">
                   Your contract is already verified. Check the contract tab to see the source code.
                 </p>
               </div>
-              
+
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
-                <h4 className="font-semibold text-red-400 mb-2">"Compilation Error"</h4>
+                <h4 className="font-semibold text-red-400 mb-2">&quot;Compilation Error&quot;</h4>
                 <p className="text-sm text-gray-300">
                   Check that the compiler version and settings match your deployment exactly.
                 </p>
@@ -306,16 +318,16 @@ const ContractVerificationGuide = () => {
 
             <div className="space-y-4">
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
-                <h4 className="font-semibold text-red-400 mb-2">"Constructor Arguments"</h4>
+                <h4 className="font-semibold text-red-400 mb-2">&quot;Constructor Arguments&quot;</h4>
                 <p className="text-sm text-gray-300">
                   Ensure constructor arguments match exactly what was used during deployment.
                 </p>
               </div>
-              
+
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
-                <h4 className="font-semibold text-red-400 mb-2">"Bytecode Mismatch"</h4>
+                <h4 className="font-semibold text-red-400 mb-2">&quot;Bytecode Mismatch&quot;</h4>
                 <p className="text-sm text-gray-300">
-                  The source code doesn't match the deployed bytecode. Double-check your source code.
+                  The source code doesn&apos;t match the deployed bytecode. Double-check your source code.
                 </p>
               </div>
             </div>
@@ -325,7 +337,7 @@ const ContractVerificationGuide = () => {
         {/* Best Practices */}
         <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-xl p-8 border border-[#2a3b54]">
           <h2 className="text-2xl font-bold text-emerald-400 mb-6">Best Practices</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">Before Deployment</h3>
@@ -336,7 +348,7 @@ const ContractVerificationGuide = () => {
                 <li>• Keep source code organized</li>
               </ul>
             </div>
-            
+
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">After Deployment</h3>
               <ul className="space-y-2 text-gray-300">

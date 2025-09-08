@@ -42,7 +42,8 @@ const features = [
   },
   {
     title: "DeFi Utilities",
-    description: "Professional-grade DeFi calculations for liquidity analysis, yield optimization, and risk assessment on Somnia.",
+    description:
+      "Professional-grade DeFi calculations for liquidity analysis, yield optimization, and risk assessment on Somnia.",
     icon: ChartBarIcon,
     link: "/defi-utils",
     color: "from-blue-500 to-cyan-500",
@@ -51,7 +52,8 @@ const features = [
   },
   {
     title: "Contract Analyzer",
-    description: "Comprehensive smart contract analysis with security auditing, gas optimization, and performance metrics.",
+    description:
+      "Comprehensive smart contract analysis with security auditing, gas optimization, and performance metrics.",
     icon: BeakerIcon,
     link: "/contract-analyzer",
     color: "from-green-500 to-emerald-500",
@@ -60,7 +62,8 @@ const features = [
   },
   {
     title: "Contract Templates",
-    description: "Production-ready, audited smart contract templates designed specifically for Somnia blockchain ecosystem.",
+    description:
+      "Production-ready, audited smart contract templates designed specifically for Somnia blockchain ecosystem.",
     icon: DocumentTextIcon,
     link: "/contract-templates",
     color: "from-orange-500 to-red-500",
@@ -214,6 +217,7 @@ const Home = () => {
         draggable
         pauseOnHover
         theme="dark"
+        aria-label="Toast notifications"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -236,8 +240,9 @@ const Home = () => {
               Professional DeFi Development Platform for Somnia Blockchain
             </p>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Enterprise-grade smart contract development tools designed specifically for Somnia blockchain. Deploy secure, 
-              optimized DeFi protocols with our comprehensive suite of professional development tools and audited templates.
+              Enterprise-grade smart contract development tools designed specifically for Somnia blockchain. Deploy
+              secure, optimized DeFi protocols with our comprehensive suite of professional development tools and
+              audited templates.
             </p>
 
             {/* Network Badge */}
@@ -299,8 +304,8 @@ const Home = () => {
               🌐 Built Exclusively for <span className="text-purple-400">Somnia Blockchain</span>
             </h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              DefiForge is the premier DeFi development platform built specifically for Somnia blockchain, 
-              providing enterprise-grade tools and optimized performance for the Somnia ecosystem.
+              DefiForge is the premier DeFi development platform built specifically for Somnia blockchain, providing
+              enterprise-grade tools and optimized performance for the Somnia ecosystem.
             </p>
             <p className="text-sm text-gray-400 mt-2">
               Native Somnia Integration: <strong>Somnia Testnet</strong> (Chain ID: 50312)
@@ -333,7 +338,9 @@ const Home = () => {
           <div className="mt-8 text-center">
             <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg border border-purple-500">
               <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-sm text-white font-medium">Somnia Native • Enterprise Ready • Production Tested</span>
+              <span className="text-sm text-white font-medium">
+                Somnia Native • Enterprise Ready • Production Tested
+              </span>
             </div>
           </div>
         </div>
@@ -345,9 +352,9 @@ const Home = () => {
               What is <span className="text-purple-400">DefiForge</span>?
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              DefiForge is the premier DeFi development platform built exclusively for Somnia blockchain. We provide 
-              enterprise-grade tools, audited smart contracts, and professional development utilities designed to accelerate 
-              your blockchain project deployment on Somnia's high-performance network.
+              DefiForge is the premier DeFi development platform built exclusively for Somnia blockchain. We provide
+              enterprise-grade tools, audited smart contracts, and professional development utilities designed to
+              accelerate your blockchain project deployment on Somnia&apos;s high-performance network.
             </p>
           </div>
 
@@ -408,7 +415,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">Production Ready</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Enterprise-grade contracts deployed on Somnia blockchain. Built with OpenZeppelin standards and 
+                  Enterprise-grade contracts deployed on Somnia blockchain. Built with OpenZeppelin standards and
                   production-tested security practices.
                 </p>
               </div>
@@ -421,7 +428,7 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">Security First</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Enterprise-grade security with OpenZeppelin contracts and comprehensive auditing. Designed for 
+                  Enterprise-grade security with OpenZeppelin contracts and comprehensive auditing. Designed for
                   production environments on Somnia blockchain.
                 </p>
               </div>
@@ -434,8 +441,8 @@ const Home = () => {
                 </div>
                 <h3 className="text-xl font-semibold mb-4 text-white">Professional Tools</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Enterprise-grade development tools with professional interfaces and comprehensive documentation. 
-                  Built specifically for Somnia blockchain ecosystem.
+                  Enterprise-grade development tools with professional interfaces and comprehensive documentation. Built
+                  specifically for Somnia blockchain ecosystem.
                 </p>
               </div>
             </div>
@@ -577,7 +584,8 @@ const Home = () => {
             Ready to Build on <span className="text-purple-400">Somnia Blockchain</span>?
           </h2>
           <p className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Join the Somnia ecosystem and deploy enterprise-grade DeFi protocols with our professional development platform
+            Join the Somnia ecosystem and deploy enterprise-grade DeFi protocols with our professional development
+            platform
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center">

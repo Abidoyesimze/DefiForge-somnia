@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import { ERC20FactoryABI, ERC721FactoryABI, ERC1155FactoryABI, getContractAddress } from "../../ABI";
+import ContractVerification from "../../components/ContractVerification";
 import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { useAccount } from "wagmi";
-import ContractVerification from "../../components/ContractVerification";
 
 type TokenType = "erc20" | "erc721" | "erc1155";
 
@@ -34,12 +34,12 @@ const TokenFactoryPage = () => {
           const provider = new ethers.BrowserProvider(window.ethereum);
           const network = await provider.getNetwork();
           console.log("🌐 Network detected:", network);
-          
+
           const networkInfo = {
             chainId: network.chainId.toString(),
             name: network.name || "Unknown",
           };
-          
+
           console.log("📡 Setting network info:", networkInfo);
           setNetworkInfo(networkInfo);
         } catch (error) {
@@ -129,7 +129,7 @@ const TokenFactoryPage = () => {
         case "erc20":
           const erc20Address = getContractAddress("ERC20Factory");
           console.log("🔗 Using ERC20Factory address:", erc20Address);
-          
+
           const erc20Contract = new ethers.Contract(
             erc20Address, // Use network-aware address
             ERC20FactoryABI,
@@ -165,7 +165,7 @@ const TokenFactoryPage = () => {
         case "erc721":
           const erc721Address = getContractAddress("ERC721Factory");
           console.log("🔗 Using ERC721Factory address:", erc721Address);
-          
+
           const erc721Contract = new ethers.Contract(
             erc721Address, // Use network-aware address
             ERC721FactoryABI,
@@ -203,7 +203,7 @@ const TokenFactoryPage = () => {
         case "erc1155":
           const erc1155Address = getContractAddress("ERC1155Factory");
           console.log("🔗 Using ERC1155Factory address:", erc1155Address);
-          
+
           const erc1155Contract = new ethers.Contract(
             erc1155Address, // Use network-aware address
             ERC1155FactoryABI,
@@ -241,7 +241,7 @@ const TokenFactoryPage = () => {
 
       if (deployedAddress) {
         console.log("✅ Token deployed successfully at:", deployedAddress);
-        
+
         // Create deployment result object
         const result: DeploymentResult = {
           type: selectedTokenType.toUpperCase(),
@@ -313,10 +313,10 @@ const TokenFactoryPage = () => {
           explorer: "https://etherscan.io",
           color: "text-gray-400",
           bgColor: "bg-gray-900/20",
-          borderColor: "border-gray-500/30"
+          borderColor: "border-gray-500/30",
         };
       }
-      
+
       const chainId = networkInfo.chainId;
       // Only Somnia testnet supported
       if (chainId === "50312") {
@@ -326,7 +326,7 @@ const TokenFactoryPage = () => {
           explorer: "https://shannon-explorer.somnia.network",
           color: "text-purple-400",
           bgColor: "bg-purple-900/20",
-          borderColor: "border-purple-500/30"
+          borderColor: "border-purple-500/30",
         };
       } else {
         return {
@@ -335,7 +335,7 @@ const TokenFactoryPage = () => {
           explorer: "https://etherscan.io",
           color: "text-gray-400",
           bgColor: "bg-gray-900/20",
-          borderColor: "border-gray-500/30"
+          borderColor: "border-gray-500/30",
         };
       }
     };
@@ -349,7 +349,9 @@ const TokenFactoryPage = () => {
           <div className="text-center mb-8">
             <div className="text-6xl mb-4">🎉</div>
             <h2 className="text-3xl font-bold text-emerald-400 mb-2">Token Deployed Successfully!</h2>
-            <p className="text-xl text-gray-300">Your {deploymentResult.type} token has been created on {network.name}</p>
+            <p className="text-xl text-gray-300">
+              Your {deploymentResult.type} token has been created on {network.name}
+            </p>
           </div>
 
           {/* Network Information */}
@@ -357,7 +359,7 @@ const TokenFactoryPage = () => {
             <h3 className="text-lg font-semibold mb-4 text-emerald-400">Network Information</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="flex items-center gap-3">
-                <div className={`w-3 h-3 rounded-full ${network.color.replace('text-', 'bg-')}`}></div>
+                <div className={`w-3 h-3 rounded-full ${network.color.replace("text-", "bg-")}`}></div>
                 <div>
                   <div className="text-white font-medium">{network.name}</div>
                   <div className="text-sm text-gray-400">Chain ID: {network.chainId}</div>
@@ -365,7 +367,7 @@ const TokenFactoryPage = () => {
               </div>
               <div className="text-right">
                 <div className="text-sm text-gray-400 mb-1">Block Explorer</div>
-                <a 
+                <a
                   href={`${network.explorer}/address/${deploymentResult.address}`}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -416,14 +418,26 @@ const TokenFactoryPage = () => {
             <h3 className="text-lg font-semibold mb-4 text-amber-400">Next Steps</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-300">
               <div className="space-y-2">
-                <div>• <strong>Verify Contract:</strong> Use the verification guide above to verify your contract</div>
-                <div>• <strong>Add to Wallet:</strong> Import the token address to your wallet</div>
-                <div>• <strong>Test Functions:</strong> Try minting, transferring, or other features</div>
+                <div>
+                  • <strong>Verify Contract:</strong> Use the verification guide above to verify your contract
+                </div>
+                <div>
+                  • <strong>Add to Wallet:</strong> Import the token address to your wallet
+                </div>
+                <div>
+                  • <strong>Test Functions:</strong> Try minting, transferring, or other features
+                </div>
               </div>
               <div className="space-y-2">
-                <div>• <strong>Share Address:</strong> Share the contract address with your community</div>
-                <div>• <strong>Monitor Activity:</strong> Track transactions and usage on the explorer</div>
-                <div>• <strong>Documentation:</strong> Keep track of your token&apos;s configuration</div>
+                <div>
+                  • <strong>Share Address:</strong> Share the contract address with your community
+                </div>
+                <div>
+                  • <strong>Monitor Activity:</strong> Track transactions and usage on the explorer
+                </div>
+                <div>
+                  • <strong>Documentation:</strong> Keep track of your token&apos;s configuration
+                </div>
               </div>
             </div>
           </div>
@@ -490,9 +504,7 @@ const TokenFactoryPage = () => {
                 </div>
                 <div className="mt-3 text-sm text-green-300">
                   <p>Connected to an EVM-compatible network. You can now deploy tokens!</p>
-                  <p className="mt-1 text-xs text-gray-400">
-                    Supported testnet: Somnia (Chain ID: 50312)
-                  </p>
+                  <p className="mt-1 text-xs text-gray-400">Supported testnet: Somnia (Chain ID: 50312)</p>
                 </div>
               </div>
             </div>

@@ -22,27 +22,27 @@ type ScaffoldWriteContractReturnType<TContractName extends ContractName> = Omit<
 > & {
   isMining: boolean;
   writeContractAsync: <
-    TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "nonpayable" | "payable">,
+    TFunctionName extends string,
   >(
-    variables: ScaffoldWriteContractVariables<TContractName, TFunctionName>,
+    variables: any,
     options?: ScaffoldWriteContractOptions,
   ) => Promise<WriteContractReturnType | undefined>;
-  writeContract: <TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "nonpayable" | "payable">>(
-    variables: ScaffoldWriteContractVariables<TContractName, TFunctionName>,
+  writeContract: <TFunctionName extends string>(
+    variables: any,
     options?: Omit<ScaffoldWriteContractOptions, "onBlockConfirmation" | "blockConfirmations">,
   ) => void;
 };
 
-export function useScaffoldWriteContract<TContractName extends ContractName>(
-  config: UseScaffoldWriteConfig<TContractName>,
-): ScaffoldWriteContractReturnType<TContractName>;
+export function useScaffoldWriteContract(
+  config: any,
+): any;
 /**
  * @deprecated Use object parameter version instead: useScaffoldWriteContract({ contractName: "YourContract" })
  */
-export function useScaffoldWriteContract<TContractName extends ContractName>(
-  contractName: TContractName,
-  writeContractParams?: UseWriteContractParameters,
-): ScaffoldWriteContractReturnType<TContractName>;
+export function useScaffoldWriteContract(
+  contractName: any,
+  writeContractParams?: any,
+): any;
 
 /**
  * Wrapper around wagmi's useWriteContract hook which automatically loads (by name) the contract ABI and address from
@@ -85,9 +85,9 @@ export function useScaffoldWriteContract<TContractName extends ContractName>(
   });
 
   const sendContractWriteAsyncTx = async <
-    TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "nonpayable" | "payable">,
+    TFunctionName extends string,
   >(
-    variables: ScaffoldWriteContractVariables<TContractName, TFunctionName>,
+    variables: any,
     options?: ScaffoldWriteContractOptions,
   ) => {
     if (!deployedContractData) {
@@ -143,9 +143,9 @@ export function useScaffoldWriteContract<TContractName extends ContractName>(
 
   const sendContractWriteTx = <
     TContractName extends ContractName,
-    TFunctionName extends ExtractAbiFunctionNames<ContractAbi<TContractName>, "nonpayable" | "payable">,
+    TFunctionName extends string,
   >(
-    variables: ScaffoldWriteContractVariables<TContractName, TFunctionName>,
+    variables: any,
     options?: Omit<ScaffoldWriteContractOptions, "onBlockConfirmation" | "blockConfirmations">,
   ) => {
     if (!deployedContractData) {

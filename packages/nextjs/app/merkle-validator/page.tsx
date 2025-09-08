@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import React from "react";
 import { MerkleProofValidatorContract, getContractAddress } from "../../ABI";
 import { toast } from "react-toastify";
 import { useAccount, useWaitForTransactionReceipt, useWriteContract } from "wagmi";
-import React from "react"; // Added missing import
+
+// Added missing import
 
 const MerkleValidatorPage = () => {
   const { address, isConnected } = useAccount();
@@ -123,9 +125,7 @@ const MerkleValidatorPage = () => {
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-slate-400 bg-clip-text text-transparent">
             Merkle Proof Validator
           </h1>
-          <p className="text-xl text-gray-300">
-            Validate Merkle proofs and manage Merkle root registrations
-          </p>
+          <p className="text-xl text-gray-300">Validate Merkle proofs and manage Merkle root registrations</p>
         </div>
 
         {/* Wallet Connection Check */}
@@ -136,29 +136,25 @@ const MerkleValidatorPage = () => {
             <p className="text-gray-300">
               Please connect your wallet to any EVM-compatible network to use the Merkle Proof Validator.
             </p>
-            <p className="text-xs text-gray-400 mt-2">
-              Supported testnet: Somnia (Chain ID: 50312)
-            </p>
+            <p className="text-xs text-gray-400 mt-2">Supported testnet: Somnia (Chain ID: 50312)</p>
           </div>
         ) : (
           <div className="space-y-8">
             {/* Register Merkle Root Section */}
             <div className="bg-[#1c2941] p-8 rounded-xl border border-[#2a3b54] shadow-xl">
               <h2 className="text-2xl font-bold mb-6 text-purple-400">Register Merkle Root</h2>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Merkle Root *</label>
                   <input
                     type="text"
                     value={merkleRoot}
-                    onChange={(e) => setMerkleRoot(e.target.value)}
+                    onChange={e => setMerkleRoot(e.target.value)}
                     placeholder="0x..."
                     className="w-full px-4 py-3 bg-[#0f1a2e] border border-[#2a3b54] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-all duration-200"
                   />
-                  <p className="text-sm text-gray-400 mt-1">
-                    Enter the Merkle root hash (0x + 64 hex characters)
-                  </p>
+                  <p className="text-sm text-gray-400 mt-1">Enter the Merkle root hash (0x + 64 hex characters)</p>
                 </div>
 
                 <div>
@@ -166,13 +162,11 @@ const MerkleValidatorPage = () => {
                   <input
                     type="text"
                     value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    onChange={e => setDescription(e.target.value)}
                     placeholder="e.g., NFT Whitelist Phase 1"
                     className="w-full px-4 py-3 bg-[#0f1a2e] border border-[#2a3b54] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-all duration-200"
                   />
-                  <p className="text-sm text-gray-400 mt-1">
-                    Provide a description for this Merkle root
-                  </p>
+                  <p className="text-sm text-gray-400 mt-1">Provide a description for this Merkle root</p>
                 </div>
 
                 <button
@@ -199,14 +193,14 @@ const MerkleValidatorPage = () => {
             {/* Validate Proof Section */}
             <div className="bg-[#1c2941] p-8 rounded-xl border border-[#2a3b54] shadow-xl">
               <h2 className="text-2xl font-bold mb-6 text-green-400">Validate Merkle Proof</h2>
-              
+
               <div className="space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Merkle Root *</label>
                   <input
                     type="text"
                     value={merkleRoot}
-                    onChange={(e) => setMerkleRoot(e.target.value)}
+                    onChange={e => setMerkleRoot(e.target.value)}
                     placeholder="0x..."
                     className="w-full px-4 py-3 bg-[#0f1a2e] border border-[#2a3b54] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-500 transition-all duration-200"
                   />
@@ -217,13 +211,11 @@ const MerkleValidatorPage = () => {
                   <input
                     type="text"
                     value={proof}
-                    onChange={(e) => setProof(e.target.value)}
+                    onChange={e => setProof(e.target.value)}
                     placeholder="0x..."
                     className="w-full px-4 py-3 bg-[#0f1a2e] border border-[#2a3b54] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-500 transition-all duration-200"
                   />
-                  <p className="text-sm text-gray-400 mt-1">
-                    Enter the Merkle proof (array of hashes)
-                  </p>
+                  <p className="text-sm text-gray-400 mt-1">Enter the Merkle proof (array of hashes)</p>
                 </div>
 
                 <div>
@@ -231,13 +223,11 @@ const MerkleValidatorPage = () => {
                   <input
                     type="text"
                     value={leaf}
-                    onChange={(e) => setLeaf(e.target.value)}
+                    onChange={e => setLeaf(e.target.value)}
                     placeholder="0x..."
                     className="w-full px-4 py-3 bg-[#0f1a2e] border border-[#2a3b54] rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-500 transition-all duration-200"
                   />
-                  <p className="text-sm text-gray-400 mt-1">
-                    Enter the leaf value to validate
-                  </p>
+                  <p className="text-sm text-gray-400 mt-1">Enter the leaf value to validate</p>
                 </div>
 
                 <button

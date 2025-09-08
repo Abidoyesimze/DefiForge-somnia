@@ -9,7 +9,7 @@ import MerkleProofABI from "./MerkleProof.json";
 import MerkleProofValidatorABI from "./MerkleProofValidator.json";
 
 // Helper function to get contract address based on network
-export const getContractAddress = (contractName: string, network: 'somnia' = 'somnia') => {
+export const getContractAddress = (contractName: string, network: "somnia" = "somnia") => {
   const contracts = {
     ContractAnalyzer: ContractAnalyzerContract,
     ContractTemplates: ContractTemplatesContract,
@@ -20,12 +20,12 @@ export const getContractAddress = (contractName: string, network: 'somnia' = 'so
     MerkleProof: MerkleProofContract,
     MerkleProofValidator: MerkleProofValidatorContract,
   };
-  
+
   const contract = contracts[contractName as keyof typeof contracts];
   if (!contract) {
     throw new Error(`Contract ${contractName} not found`);
   }
-  
+
   return contract.addresses[network] || contract.address;
 };
 
