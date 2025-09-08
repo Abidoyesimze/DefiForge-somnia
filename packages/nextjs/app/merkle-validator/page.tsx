@@ -49,7 +49,7 @@ const MerkleValidatorPage = () => {
     try {
       setIsValidating(true);
       registerMerkleRoot({
-        address: getContractAddress("MerkleProofValidator"),
+        address: getContractAddress("MerkleProofValidator") as `0x${string}`,
         abi: MerkleProofValidatorContract.abi,
         functionName: "registerMerkleRoot",
         args: [merkleRoot, description],
@@ -87,7 +87,7 @@ const MerkleValidatorPage = () => {
     try {
       setIsValidating(true);
       validateProof({
-        address: getContractAddress("MerkleProofValidator"),
+        address: getContractAddress("MerkleProofValidator") as `0x${string}`,
         abi: MerkleProofValidatorContract.abi,
         functionName: "validateProof",
         args: [merkleRoot, proof, leaf],

@@ -16,7 +16,7 @@ export function useMerkleRootValid(root: string | undefined) {
   const enabled = !!root && root !== "0x0000000000000000000000000000000000000000000000000000000000000000";
 
   const { data, error, isPending } = useReadContract({
-    address: MerkleProofContract.address,
+    address: MerkleProofContract.address as `0x${string}`,
     abi: MerkleProofContract.abi,
     functionName: "isMerkleRootValid",
     args: [root || "0x0000000000000000000000000000000000000000000000000000000000000000"],
@@ -32,7 +32,7 @@ export function useMerkleRootValid(root: string | undefined) {
 // Hook to get platform fee
 export function usePlatformFee() {
   const { data, error, isPending } = useReadContract({
-    address: MerkleProofContract.address,
+    address: MerkleProofContract.address as `0x${string}`,
     abi: MerkleProofContract.abi,
     functionName: "getPlatformFee",
   });
@@ -49,7 +49,7 @@ export function useIsNewcomer() {
   const { address } = useAccount();
 
   const { data, error, isPending } = useReadContract({
-    address: MerkleProofContract.address,
+    address: MerkleProofContract.address as `0x${string}`,
     abi: MerkleProofContract.abi,
     functionName: "isUserNewcomer",
     args: [address || "0x0000000000000000000000000000000000000000"],
@@ -67,7 +67,7 @@ export function useMerkleTreeInfo(root: string | undefined) {
   const enabled = !!root && root !== "0x0000000000000000000000000000000000000000000000000000000000000000";
 
   const { data, error, isPending } = useReadContract({
-    address: MerkleProofContract.address,
+    address: MerkleProofContract.address as `0x${string}`,
     abi: MerkleProofContract.abi,
     functionName: "getMerkleTreeInfo",
     args: [root || "0x0000000000000000000000000000000000000000000000000000000000000000"],
@@ -116,7 +116,7 @@ export function useMerkleContract() {
     setIsLoading(true);
     try {
       const hash = await writeContractAsync({
-        address: MerkleProofContract.address,
+        address: MerkleProofContract.address as `0x${string}`,
         abi: MerkleProofContract.abi,
         functionName: "addMerkleTree",
         args: [root, description, BigInt(listSize)],
@@ -139,7 +139,7 @@ export function useMerkleContract() {
     setIsLoading(true);
     try {
       const hash = await writeContractAsync({
-        address: MerkleProofContract.address,
+        address: MerkleProofContract.address as `0x${string}`,
         abi: MerkleProofContract.abi,
         functionName: "removeMerkleTree",
         args: [root],
@@ -161,7 +161,7 @@ export function useMerkleContract() {
     setIsLoading(true);
     try {
       const hash = await writeContractAsync({
-        address: MerkleProofContract.address,
+        address: MerkleProofContract.address as `0x${string}`,
         abi: MerkleProofContract.abi,
         functionName: "updateMerkleTreeDescription",
         args: [root, newDescription],

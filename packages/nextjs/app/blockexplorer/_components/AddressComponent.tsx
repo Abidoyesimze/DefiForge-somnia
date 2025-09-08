@@ -21,11 +21,11 @@ export const AddressComponent = ({
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-2xl font-bold text-emerald-400 mb-2">Address Details</h1>
-              <Address address={address} format="long" onlyEnsOrAddress />
+              <Address address={address as `0x${string}`} format="long" onlyEnsOrAddress />
             </div>
             <div className="text-right">
               <div className="text-sm text-gray-400 mb-1">Balance</div>
-              <Balance address={address} className="text-lg font-semibold text-white" />
+              <Balance address={address as `0x${string}`} className="text-lg font-semibold text-white" />
             </div>
           </div>
         </div>
