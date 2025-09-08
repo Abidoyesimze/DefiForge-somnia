@@ -7,11 +7,11 @@ import contractData from "~~/contracts/deployedContracts";
 type ContractsInterfaces = Record<string, Abi>;
 type TransactionType = TransactionWithFunction | null;
 
-const deployedContracts = contractData as GenericContractsDeclaration | null;
+const deployedContracts = contractData as any;
 const chainMetaData = deployedContracts?.[hardhat.id];
 const interfaces = chainMetaData
   ? Object.entries(chainMetaData).reduce((finalInterfacesObj, [contractName, contract]) => {
-      finalInterfacesObj[contractName] = contract.abi;
+      finalInterfacesObj[contractName] = (contract as any).abi;
       return finalInterfacesObj;
     }, {} as ContractsInterfaces)
   : {};
