@@ -79,6 +79,25 @@ DefiForge runs on Somnia testnet, providing:
 - **Low Costs**: Fraction of Ethereum gas fees
 - **EVM Compatible**: Works with existing Ethereum tools
 
+- ##  Deployed Contract Addresses
+
+All DefiForge smart contracts are deployed on **Somnia Testnet (Chain ID: 50312)**:
+
+### Core Factory Contracts
+- **ERC20 Token Factory**: `0x4F6D41C9F94FdD64c8D82C4eb71a459075E5Ae57`
+- **ERC721 NFT Factory**: `0x915C81F20f8A6fFe4A19342B2C54Bf0840C37B9A`
+- **ERC1155 Multi-Token Factory**: `0xaA65bf9B2c119Df5043498f0C78D7FC1a6F6F4B4`
+
+### Utility Contracts
+- **DeFi Utils Calculator**: `0x8860C6081E3Dd957d225FEf12d718495EBa75255`
+- **Contract Analyzer**: `0xB0170720d8BB751Ed8F7cC071b8D0d9b4e5f501F`
+- **Contract Templates**: `0x157f375f0112837CA14c8dAFB9dFe26f83a94634`
+
+### Merkle Proof System
+- **Merkle Proof Validator**: `0x6FA75F5dc94A1Cec18a8a113851231c66e2Bb90f`
+- **Merkle Proof Generator**: `0x0f1d9F35bc1631D8C3eB6A2B35A2972bF5061E53`
+
+
 
 ##  What Makes DefiForge Special?
 
