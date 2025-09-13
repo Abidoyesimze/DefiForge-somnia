@@ -18,11 +18,16 @@ DefiForge is a comprehensive platform that makes building DeFi (Decentralized Fi
 ### 1. **ERC20 Token Factory** 
 Create your own cryptocurrency tokens in minutes. Choose the name, symbol, initial supply, and other parameters. Perfect for launching new projects, creating reward tokens, or building your own ecosystem.
 
+**ERC721 NFTs**: Deploy NFT collections for digital art, gaming assets, and collectibles
+- **ERC1155 Multi-Tokens**: Build complex token ecosystems for gaming, marketplaces, and multi-asset projects
+
 ### 2. **DeFi Utilities Calculator** 
 Advanced financial calculations for DeFi protocols. Calculate liquidity, yield returns, impermanent loss, and swap fees. All the math you need to build sophisticated DeFi applications.
 
 ### 3. **Smart Contract Analyzer** 
 Analyze existing smart contracts to understand their performance, security, and gas costs. Get insights into how to optimize your contracts and save money on deployment.
+**Contract Debugging**: Test and debug smart contracts in real-time
+- **Contract Verification**: Verify contracts on Somnia testnet with our step-by-step guide
 
 ### 4. **Contract Templates Library** 
 Ready-to-use smart contract templates that are battle-tested and secure. Includes vesting contracts, multi-signature wallets, and other common DeFi building blocks.
@@ -32,6 +37,9 @@ Efficiently manage whitelists and access control using Merkle proofs. Perfect fo
 
 ### 6. **Merkle Proof Generator** 
 Generate Merkle trees and proofs for your whitelist systems. Upload addresses, get your tree, and create proofs for individual users.
+
+### 7. **Blockchain Exploration**
+Use our built-in block explorer to monitor transactions, analyze contract interactions, and explore the Somnia testnet. 
 
 ##  How Does DefiForge Work?
 
