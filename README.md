@@ -133,7 +133,7 @@ All DefiForge smart contracts are deployed on **Somnia Testnet (Chain ID: 50312)
 
 
 
-##  What Makes DefiForge Special?
+## 💡 What Makes DefiForge Special?
 
 ### **Complete Solution**
 Unlike other platforms that offer just one tool, DefiForge provides everything you need in one place. No need to learn multiple systems or integrate different services.
@@ -219,4 +219,4 @@ DefiForge makes it possible for anyone to create professional-grade DeFi applica
 
 *Built with ❤️ for the DeFi community*
 
-*Visit [DefiForge Platform](https://defi-forge-nextjs-9w5e.vercel.app/)) to get started*
+*Visit [DefiForge Platform](https://defi-forge-somnia-nextjs.vercel.app/) to get started*
