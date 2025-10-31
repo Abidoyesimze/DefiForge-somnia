@@ -1,6 +1,7 @@
 {
-  "name": "@defiforge/hardhat",
+  "name": "defiforge-smartcontract",
   "version": "0.0.1",
+  "description": "DeFiForge Smart Contracts - Solidity contracts for DeFi development",
   "scripts": {
     "account": "hardhat run scripts/listAccount.ts",
     "account:generate": "hardhat run scripts/generateAccount.ts",
@@ -20,7 +21,8 @@
     "lint": "eslint",
     "lint-staged": "eslint",
     "test": "REPORT_GAS=true hardhat test --network hardhat",
-    "verify": "hardhat etherscan-verify"
+    "verify": "hardhat etherscan-verify",
+    "verify:contracts": "hardhat run scripts/verify_contracts.ts"
   },
   "dependencies": {
     "@inquirer/password": "^4.0.2",
@@ -38,6 +40,7 @@
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.7",
     "@nomicfoundation/hardhat-ethers": "^3.0.8",
     "@nomicfoundation/hardhat-network-helpers": "^1.0.11",
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "@nomicfoundation/hardhat-verify": "^2.0.10",
     "@typechain/ethers-v5": "~11.1.2",
     "@typechain/hardhat": "~9.1.0",
@@ -55,7 +58,7 @@
     "hardhat": "^2.22.19",
     "hardhat-deploy": "~0.12.4",
     "hardhat-deploy-ethers": "~0.4.2",
-    "hardhat-gas-reporter": "~2.2.1",
+    "hardhat-gas-reporter": "^1.0.8",
     "prettier": "^3.5.3",
     "prettier-plugin-solidity": "~1.4.1",
     "solidity-coverage": "~0.8.13",

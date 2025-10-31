@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import {
+import { 
   ArrowTopRightOnSquareIcon,
-  CheckCircleIcon,
+  CheckCircleIcon, 
   ClipboardDocumentIcon,
   CodeBracketIcon,
   DocumentTextIcon,
@@ -39,7 +39,7 @@ const ContractVerificationGuide = () => {
             <ShieldCheckIcon className="h-8 w-8 text-emerald-400" />
             <h2 className="text-2xl font-bold text-emerald-400">What is Contract Verification?</h2>
           </div>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">Why Verify?</h3>
@@ -70,7 +70,7 @@ const ContractVerificationGuide = () => {
                 </li>
               </ul>
             </div>
-
+            
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">What Gets Verified?</h3>
               <ul className="space-y-2 text-gray-300">
@@ -110,9 +110,9 @@ const ContractVerificationGuide = () => {
               </div>
               <div className="flex justify-between">
                 <span className="text-gray-400">Explorer:</span>
-                <a
-                  href="https://shannon-explorer.somnia.network"
-                  target="_blank"
+                <a 
+                  href="https://shannon-explorer.somnia.network" 
+                  target="_blank" 
                   rel="noopener noreferrer"
                   className="text-purple-400 hover:underline"
                 >
@@ -307,7 +307,7 @@ const ContractVerificationGuide = () => {
                   Your contract is already verified. Check the contract tab to see the source code.
                 </p>
               </div>
-
+              
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
                 <h4 className="font-semibold text-red-400 mb-2">&quot;Compilation Error&quot;</h4>
                 <p className="text-sm text-gray-300">
@@ -323,7 +323,7 @@ const ContractVerificationGuide = () => {
                   Ensure constructor arguments match exactly what was used during deployment.
                 </p>
               </div>
-
+              
               <div className="p-4 bg-red-900/20 rounded-lg border border-red-500/30">
                 <h4 className="font-semibold text-red-400 mb-2">&quot;Bytecode Mismatch&quot;</h4>
                 <p className="text-sm text-gray-300">
@@ -337,7 +337,7 @@ const ContractVerificationGuide = () => {
         {/* Best Practices */}
         <div className="bg-gradient-to-r from-slate-800/50 to-slate-700/50 rounded-xl p-8 border border-[#2a3b54]">
           <h2 className="text-2xl font-bold text-emerald-400 mb-6">Best Practices</h2>
-
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">Before Deployment</h3>
@@ -348,7 +348,7 @@ const ContractVerificationGuide = () => {
                 <li>• Keep source code organized</li>
               </ul>
             </div>
-
+            
             <div>
               <h3 className="text-lg font-semibold mb-3 text-white">After Deployment</h3>
               <ul className="space-y-2 text-gray-300">
