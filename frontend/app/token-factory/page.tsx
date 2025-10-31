@@ -17,6 +17,16 @@ interface DeploymentResult {
   inputs: Record<string, string>;
 }
 
+interface SavedToken {
+  type: string;
+  address: string;
+  name: string;
+  symbol: string;
+  chainId: string;
+  timestamp: number;
+  explorerUrl?: string;
+}
+
 const TokenFactoryPage = () => {
   const { address, isConnected } = useAccount();
   const [selectedTokenType, setSelectedTokenType] = useState<TokenType>("erc20");
@@ -24,6 +34,10 @@ const TokenFactoryPage = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [deploymentResult, setDeploymentResult] = useState<DeploymentResult | null>(null);
   const [networkInfo, setNetworkInfo] = useState<{ chainId: string; name: string } | null>(null);
+  const [savedTokens, setSavedTokens] = useState<SavedToken[]>([]);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [showTokensModal, setShowTokensModal] = useState(false);
+  const [isLoadingTokens, setIsLoadingTokens] = useState(false);
 
   // Check network on mount and when wallet connects
   useEffect(() => {
@@ -52,6 +66,221 @@ const TokenFactoryPage = () => {
 
     checkNetwork();
   }, [isConnected]);
+
+  // Load tokens from blockchain
+  useEffect(() => {
+    const loadTokensFromBlockchain = async () => {
+      if (!address || !window.ethereum || !networkInfo) return;
+
+      try {
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const allTokens: SavedToken[] = [];
+
+        const explorerUrl = networkInfo.chainId === "50312" 
+          ? "https://shannon-explorer.somnia.network"
+          : "https://etherscan.io";
+
+        // Load ERC20 tokens
+        try {
+          const erc20Factory = new ethers.Contract(
+            getContractAddress("ERC20Factory"),
+            ERC20FactoryABI,
+            provider
+          );
+          const erc20Addresses = await erc20Factory.getTokensByCreator(address);
+          
+          for (const tokenAddr of erc20Addresses) {
+            try {
+              const tokenContract = new ethers.Contract(
+                tokenAddr,
+                ["function name() view returns (string)", "function symbol() view returns (string)"],
+                provider
+              );
+              const name = await tokenContract.name();
+              const symbol = await tokenContract.symbol();
+              
+              allTokens.push({
+                type: "ERC20",
+                address: tokenAddr,
+                name,
+                symbol,
+                chainId: networkInfo.chainId,
+                timestamp: 0,
+                explorerUrl,
+              });
+            } catch (err) {
+              console.error("Error loading ERC20 token details:", err);
+            }
+          }
+        } catch (err) {
+          console.error("Error loading ERC20 tokens:", err);
+        }
+
+        // Load ERC721 collections
+        try {
+          const erc721Factory = new ethers.Contract(
+            getContractAddress("ERC721Factory"),
+            ERC721FactoryABI,
+            provider
+          );
+          const erc721Addresses = await erc721Factory.getCollectionsByCreator(address);
+          
+          for (const tokenAddr of erc721Addresses) {
+            try {
+              const tokenContract = new ethers.Contract(
+                tokenAddr,
+                ["function name() view returns (string)", "function symbol() view returns (string)"],
+                provider
+              );
+              const name = await tokenContract.name();
+              const symbol = await tokenContract.symbol();
+              
+              allTokens.push({
+                type: "ERC721",
+                address: tokenAddr,
+                name,
+                symbol,
+                chainId: networkInfo.chainId,
+                timestamp: 0,
+                explorerUrl,
+              });
+            } catch (err) {
+              console.error("Error loading ERC721 token details:", err);
+            }
+          }
+        } catch (err) {
+          console.error("Error loading ERC721 tokens:", err);
+        }
+
+        // Load ERC1155 contracts
+        try {
+          const erc1155Factory = new ethers.Contract(
+            getContractAddress("ERC1155Factory"),
+            ERC1155FactoryABI,
+            provider
+          );
+          const erc1155Addresses = await erc1155Factory.getContractsByCreator(address);
+          
+          for (const tokenAddr of erc1155Addresses) {
+            try {
+              const tokenContract = new ethers.Contract(
+                tokenAddr,
+                ["function name() view returns (string)"],
+                provider
+              );
+              const name = await tokenContract.name();
+              
+              allTokens.push({
+                type: "ERC1155",
+                address: tokenAddr,
+                name,
+                symbol: "Multi-Token",
+                chainId: networkInfo.chainId,
+                timestamp: 0,
+                explorerUrl,
+              });
+            } catch (err) {
+              console.error("Error loading ERC1155 token details:", err);
+            }
+          }
+        } catch (err) {
+          console.error("Error loading ERC1155 tokens:", err);
+        }
+
+        setSavedTokens(allTokens);
+      } catch (error) {
+        console.error("Error loading tokens from blockchain:", error);
+      }
+    };
+
+    loadTokensFromBlockchain();
+  }, [address, networkInfo]);
+
+  // Reload tokens from blockchain
+  const reloadTokens = async () => {
+    if (!address || !window.ethereum || !networkInfo) return;
+
+    setIsLoadingTokens(true);
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const allTokens: SavedToken[] = [];
+
+      const explorerUrl = networkInfo.chainId === "50312" 
+        ? "https://shannon-explorer.somnia.network"
+        : "https://etherscan.io";
+
+      // Load all tokens from factories
+      try {
+        const erc20Factory = new ethers.Contract(getContractAddress("ERC20Factory"), ERC20FactoryABI, provider);
+        const erc20Addresses = await erc20Factory.getTokensByCreator(address);
+        
+        for (const tokenAddr of erc20Addresses) {
+          try {
+            const tokenContract = new ethers.Contract(tokenAddr, ["function name() view returns (string)", "function symbol() view returns (string)"], provider);
+            allTokens.push({
+              type: "ERC20",
+              address: tokenAddr,
+              name: await tokenContract.name(),
+              symbol: await tokenContract.symbol(),
+              chainId: networkInfo.chainId,
+              timestamp: 0,
+              explorerUrl,
+            });
+          } catch (err) {
+            console.error("Error loading ERC20 token:", err);
+          }
+        }
+
+        const erc721Factory = new ethers.Contract(getContractAddress("ERC721Factory"), ERC721FactoryABI, provider);
+        const erc721Addresses = await erc721Factory.getCollectionsByCreator(address);
+        
+        for (const tokenAddr of erc721Addresses) {
+          try {
+            const tokenContract = new ethers.Contract(tokenAddr, ["function name() view returns (string)", "function symbol() view returns (string)"], provider);
+            allTokens.push({
+              type: "ERC721",
+              address: tokenAddr,
+              name: await tokenContract.name(),
+              symbol: await tokenContract.symbol(),
+              chainId: networkInfo.chainId,
+              timestamp: 0,
+              explorerUrl,
+            });
+          } catch (err) {
+            console.error("Error loading ERC721 token:", err);
+          }
+        }
+
+        const erc1155Factory = new ethers.Contract(getContractAddress("ERC1155Factory"), ERC1155FactoryABI, provider);
+        const erc1155Addresses = await erc1155Factory.getContractsByCreator(address);
+        
+        for (const tokenAddr of erc1155Addresses) {
+          try {
+            const tokenContract = new ethers.Contract(tokenAddr, ["function name() view returns (string)"], provider);
+            allTokens.push({
+              type: "ERC1155",
+              address: tokenAddr,
+              name: await tokenContract.name(),
+              symbol: "Multi-Token",
+              chainId: networkInfo.chainId,
+              timestamp: 0,
+              explorerUrl,
+            });
+          } catch (err) {
+            console.error("Error loading ERC1155 token:", err);
+          }
+        }
+
+        setSavedTokens(allTokens);
+      } catch (err) {
+        console.error("Error reloading tokens:", err);
+      }
+    } catch (error) {
+      console.error("Error reloading tokens from blockchain:", error);
+    } finally {
+      setIsLoadingTokens(false);
+    }
+  };
 
   const [formData, setFormData] = useState({
     name: "",
@@ -276,6 +505,11 @@ const TokenFactoryPage = () => {
         setShowSuccessModal(true);
         console.log("🎉 Success modal should now be visible!");
 
+        // Reload tokens from blockchain to update sidebar
+        setTimeout(() => {
+          reloadTokens();
+        }, 2000); // Wait 2 seconds for blockchain confirmation
+
         toast.success(`${selectedTokenType.toUpperCase()} token deployed successfully!`);
       } else {
         console.log("❌ No deployed address found in transaction receipt");
@@ -298,6 +532,273 @@ const TokenFactoryPage = () => {
     } finally {
       setIsDeploying(false);
     }
+  };
+
+  // Professional Sidebar Component
+  const TokenSidebar = (): React.JSX.Element => {
+    const menuItems = [
+      {
+        icon: "🏭",
+        label: "Create Token",
+        active: true,
+        onClick: () => {},
+      },
+      {
+        icon: "📊",
+        label: "My Tokens",
+        count: savedTokens.length,
+        active: false,
+        onClick: () => setShowTokensModal(true),
+      },
+    ];
+
+    return (
+      <div className={`${sidebarOpen ? "w-64" : "w-20"} transition-all duration-300 bg-gradient-to-b from-[#1c2941] to-[#0f1a2e] border-r border-[#2a3b54] flex-shrink-0 shadow-2xl`}>
+        <div className="h-full flex flex-col">
+          {/* Sidebar Header */}
+          <div className="p-4 border-b border-[#2a3b54]">
+            <div className="flex items-center justify-between">
+              {sidebarOpen && (
+                <div>
+                  <h2 className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent">
+                    DeFiForge
+                  </h2>
+                  <p className="text-xs text-gray-400 mt-1">Token Factory</p>
+                </div>
+              )}
+              <button
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                className="p-2 hover:bg-[#2a3b54] rounded-lg transition-all duration-200 hover:scale-110"
+                title={sidebarOpen ? "Collapse sidebar" : "Expand sidebar"}
+              >
+                <span className="text-gray-400">{sidebarOpen ? "←" : "→"}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Sidebar Menu */}
+          <div className="flex-1 overflow-y-auto p-4">
+            <nav className="space-y-2">
+              {menuItems.map((item, index) => (
+                <button
+                  key={index}
+                  onClick={item.onClick}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                    item.active
+                      ? "bg-gradient-to-r from-emerald-600/20 to-blue-600/20 border border-emerald-500/30 text-emerald-400 shadow-lg"
+                      : "hover:bg-[#2a3b54] text-gray-300 hover:text-white border border-transparent"
+                  }`}
+                >
+                  <span className="text-2xl">{item.icon}</span>
+                  {sidebarOpen && (
+                    <>
+                      <span className="flex-1 text-left font-medium">{item.label}</span>
+                      {item.count !== undefined && item.count > 0 && (
+                        <span className="px-2 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-bold rounded-full min-w-[24px] text-center">
+                          {item.count}
+                        </span>
+                      )}
+                    </>
+                  )}
+                  {!sidebarOpen && item.count !== undefined && item.count > 0 && (
+                    <span className="absolute top-2 right-2 w-5 h-5 bg-emerald-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                      {item.count}
+                    </span>
+                  )}
+                </button>
+              ))}
+            </nav>
+          </div>
+
+          {/* Sidebar Footer */}
+          {sidebarOpen && (
+            <div className="p-4 border-t border-[#2a3b54]">
+              <div className="text-xs text-gray-400 text-center">
+                <p>Connected to</p>
+                <p className="text-emerald-400 font-medium mt-1">
+                  {networkInfo?.name || "Network"}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
+
+  // My Tokens Modal Component
+  const MyTokensModal = (): React.JSX.Element | null => {
+    if (!showTokensModal) return null;
+
+    const copyToClipboard = (text: string) => {
+      navigator.clipboard.writeText(text);
+      toast.success("Address copied to clipboard!");
+    };
+
+    const getTokenTypeColor = (type: string) => {
+      switch (type.toLowerCase()) {
+        case "erc20":
+          return {
+            bg: "bg-gradient-to-r from-blue-500/20 to-blue-600/10",
+            text: "text-blue-400",
+            border: "border-blue-500/30",
+            badge: "bg-blue-500/20"
+          };
+        case "erc721":
+          return {
+            bg: "bg-gradient-to-r from-purple-500/20 to-purple-600/10",
+            text: "text-purple-400",
+            border: "border-purple-500/30",
+            badge: "bg-purple-500/20"
+          };
+        case "erc1155":
+          return {
+            bg: "bg-gradient-to-r from-pink-500/20 to-pink-600/10",
+            text: "text-pink-400",
+            border: "border-pink-500/30",
+            badge: "bg-pink-500/20"
+          };
+        default:
+          return {
+            bg: "bg-gradient-to-r from-gray-500/20 to-gray-600/10",
+            text: "text-gray-400",
+            border: "border-gray-500/30",
+            badge: "bg-gray-500/20"
+          };
+      }
+    };
+
+    const getNetworkName = (chainId: string) => {
+      if (chainId === "50312") return "Somnia Testnet";
+      if (chainId === "31337") return "Localhost";
+      return `Chain ${chainId}`;
+    };
+
+    // Group tokens by type
+    const tokensByType = savedTokens.reduce((acc, token) => {
+      if (!acc[token.type]) {
+        acc[token.type] = [];
+      }
+      acc[token.type].push(token);
+      return acc;
+    }, {} as Record<string, SavedToken[]>);
+
+    return (
+      <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={() => setShowTokensModal(false)}>
+        <div className="bg-gradient-to-br from-[#1c2941] to-[#0f1a2e] rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden border border-[#2a3b54] shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          {/* Modal Header */}
+          <div className="p-6 border-b border-[#2a3b54] bg-gradient-to-r from-emerald-900/20 to-blue-900/20">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-blue-400 bg-clip-text text-transparent flex items-center gap-3">
+                  📊 My Tokens
+                </h2>
+                <p className="text-gray-400 mt-2">
+                  {savedTokens.length} token{savedTokens.length !== 1 ? "s" : ""} deployed on {getNetworkName(networkInfo?.chainId || "")}
+                </p>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={async () => {
+                    await reloadTokens();
+                    toast.success("Tokens refreshed!");
+                  }}
+                  disabled={isLoadingTokens}
+                  className="px-4 py-2 bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-400 rounded-lg transition-all disabled:opacity-50 flex items-center gap-2"
+                >
+                  {isLoadingTokens ? "⏳" : "🔄"} Refresh
+                </button>
+                <button
+                  onClick={() => setShowTokensModal(false)}
+                  className="p-2 hover:bg-[#2a3b54] rounded-lg transition-all text-gray-400 hover:text-white"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Modal Content */}
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            {savedTokens.length === 0 ? (
+              <div className="text-center py-16">
+                <div className="text-6xl mb-4">🏭</div>
+                <h3 className="text-2xl font-bold text-gray-300 mb-2">No Tokens Yet</h3>
+                <p className="text-gray-400 mb-6">Deploy your first token to see it here!</p>
+                <button
+                  onClick={() => setShowTokensModal(false)}
+                  className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-blue-600 hover:from-emerald-700 hover:to-blue-700 text-white font-semibold rounded-xl transition-all"
+                >
+                  Create Token Now
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {Object.entries(tokensByType).map(([type, tokens]) => (
+                  <div key={type}>
+                    <h3 className="text-xl font-bold text-gray-200 mb-4 flex items-center gap-2">
+                      <span className={getTokenTypeColor(type).text}>{type}</span>
+                      <span className="text-sm text-gray-400">({tokens.length})</span>
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {tokens.map((token) => {
+                        const colors = getTokenTypeColor(token.type);
+                        return (
+                          <div
+                            key={token.address}
+                            className={`${colors.bg} rounded-xl p-5 border ${colors.border} hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl`}
+                          >
+                            {/* Token Type Badge */}
+                            <div className={`inline-block px-3 py-1 ${colors.badge} ${colors.text} text-xs font-bold rounded-full mb-3 border ${colors.border}`}>
+                              {token.type}
+                            </div>
+
+                            {/* Token Info */}
+                            <div className="mb-4">
+                              <h4 className="font-bold text-white text-lg mb-1 truncate">{token.name}</h4>
+                              <p className={`${colors.text} font-medium`}>{token.symbol}</p>
+                            </div>
+
+                            {/* Token Address */}
+                            <div className="bg-black/30 rounded-lg p-3 mb-4">
+                              <div className="text-xs text-gray-400 mb-2 font-medium">Contract Address</div>
+                              <div className="flex items-center gap-2">
+                                <code className="text-xs text-gray-300 font-mono flex-1 truncate">
+                                  {token.address}
+                                </code>
+                                <button
+                                  onClick={() => copyToClipboard(token.address)}
+                                  className="p-2 hover:bg-white/10 rounded transition-colors flex-shrink-0"
+                                  title="Copy address"
+                                >
+                                  📋
+                                </button>
+                              </div>
+                            </div>
+
+                            {/* Actions */}
+                            {token.explorerUrl && (
+                              <a
+                                href={`${token.explorerUrl}/address/${token.address}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className={`block text-center px-4 py-2 ${colors.badge} hover:${colors.badge.replace('20', '30')} ${colors.text} font-medium rounded-lg transition-all`}
+                              >
+                                View on Explorer →
+                              </a>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
   };
 
   // Success Modal Component
@@ -471,15 +972,20 @@ const TokenFactoryPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#121d33] text-white">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-slate-400 bg-clip-text text-transparent">
-            Token Factory
-          </h1>
-          <p className="text-xl text-gray-300">Deploy ERC20, ERC721, and ERC1155 tokens with custom configurations</p>
-        </div>
+    <div className="min-h-screen bg-[#121d33] text-white flex">
+      {/* Sidebar */}
+      {isConnected && <TokenSidebar />}
+      
+      {/* Main Content */}
+      <div className="flex-1 overflow-x-hidden">
+        <div className="max-w-6xl mx-auto px-4 py-12">
+          {/* Header */}
+          <div className="text-center mb-12">
+            <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-400 to-slate-400 bg-clip-text text-transparent">
+              Token Factory
+            </h1>
+            <p className="text-xl text-gray-300">Deploy ERC20, ERC721, and ERC1155 tokens with custom configurations</p>
+          </div>
 
         {/* Wallet Connection Check */}
         {!isConnected ? (
@@ -705,6 +1211,10 @@ const TokenFactoryPage = () => {
 
         {/* Success Modal */}
         <SuccessModal />
+        
+        {/* My Tokens Modal */}
+        <MyTokensModal />
+        </div>
       </div>
     </div>
   );
